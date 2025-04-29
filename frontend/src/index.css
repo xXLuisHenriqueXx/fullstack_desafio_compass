@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+  /* COLORS */
+  --color-primary: rgba(0, 52, 89, 1);
+  --color-primary-40: #fff;
+  --color-primary-60: #fff;
+  --color-primary-80: rgba(0, 42, 72, 1);
+
+  --color-neutral: rgba(253, 253, 253, 1);
+  --color-neutral-40: rgba(153, 162, 165, 1);
+  --color-neutral-60: rgba(102, 116, 121, 1);
+  --color-neutral-80: rgba(36, 43, 51, 1);
+
+  /* BACKGROUND IMAGES */
+  --background-image-hero-banner: url("./assets/hero_banner.jpg");
+}
