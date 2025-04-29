@@ -12,7 +12,7 @@ export default function PetKnowledge() {
           </h2>
         </div>
 
-        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300">
+        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
           <p>View more</p>
           <ChevronRight size={16} />
         </button>

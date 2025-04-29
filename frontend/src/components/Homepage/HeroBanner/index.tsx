@@ -17,11 +17,11 @@ export default function HeroBanner() {
         </p>
 
         <div className="flex flex-row gap-x-5">
-          <button className="flex flex-row items-center gap-x-2 px-7 py-3.5 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium rounded-full transition-all duration-300">
+          <button className="flex flex-row items-center gap-x-2 px-7 py-3.5 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium rounded-full transition-all duration-300 cursor-pointer">
             View Intro
             <CirclePlay size={20} />
           </button>
-          <button className="px-7 py-3.5 bg-primary hover:bg-neutral text-neutral hover:text-primary font-medium rounded-full transition-all duration-300">
+          <button className="px-7 py-3.5 bg-primary hover:bg-state-blue text-neutral hover:text-primary font-medium rounded-full transition-all duration-300 cursor-pointer">
             Explore Now
           </button>
         </div>

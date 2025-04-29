@@ -61,7 +61,7 @@ export default function Sellers() {
           <span className="text-2xl font-bold text-primary">Pet Sellers</span>
         </h2>
 
-        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300">
+        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
           <p>View all our sellers</p>
           <ChevronRight size={16} />
         </button>

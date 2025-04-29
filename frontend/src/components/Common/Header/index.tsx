@@ -40,7 +40,7 @@ export default function Header() {
           {navData.map((link) => (
             <li
               key={link.id}
-              className="text-base font-bold text-primary hover:text-neutral cursor-pointer transition-all duration-300"
+              className="text-base font-bold text-primary hover:text-state-blue transition-all duration-300 cursor-pointer"
             >
               {link.name}
             </li>
@@ -53,7 +53,7 @@ export default function Header() {
           htmlFor="search-input"
           className="flex flex-row items-center gap-x-3 w-72 px-4 py-3 bg-neutral rounded-full"
         >
-          <Search className="text-[#667479]" size={16} />
+          <Search className="text-neutral-60" size={16} />
 
           <input
             id="search-input"
@@ -63,12 +63,12 @@ export default function Header() {
           />
         </label>
 
-        <button className="px-7 py-3.5 bg-primary hover:bg-neutral rounded-full text-base font-bold text-neutral hover:text-primary cursor-pointer transition-all duration-300 outline-none">
+        <button className="px-7 py-3.5 bg-primary hover:bg-state-blue rounded-full text-base font-bold text-neutral hover:text-primary transition-all duration-300 cursor-pointer outline-none">
           Join the community
         </button>
 
         <article className="flex flex-row items-center gap-x-1">
-          <div className=" flex justify-center items-center w-4 aspect-square rounded-full bg-[#d80027]">
+          <div className=" flex justify-center items-center w-4 aspect-square rounded-full bg-state-red">
             <Star color="#FFDA44" size={8} />
           </div>
 
