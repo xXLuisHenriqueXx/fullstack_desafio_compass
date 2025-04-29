@@ -7,7 +7,7 @@ interface Props {
 
 export default function Container({ children }: Props) {
   return (
-    <main className="min-w-full min-h-full px-32">
+    <main className="flex flex-col gap-y-16 min-w-full min-h-full bg-neutral">
       <Header />
 
       {children}
