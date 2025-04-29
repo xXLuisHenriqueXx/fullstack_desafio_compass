@@ -5,6 +5,8 @@ import MidBanner from "../../components/Homepage/MidBanner";
 import Products from "../../components/Homepage/Products";
 import Sellers from "../../components/Homepage/Sellers";
 import BottomBanner from "../../components/Homepage/BottomBanner";
+import PetKnowledge from "../../components/Homepage/PetKnowledge";
+import Footer from "../../components/Homepage/Footer";
 
 export default function Homepage() {
   return (
@@ -15,6 +17,8 @@ export default function Homepage() {
       <Products />
       <Sellers />
       <BottomBanner />
+      <PetKnowledge />
+      <Footer />
     </Container>
   );
 }
