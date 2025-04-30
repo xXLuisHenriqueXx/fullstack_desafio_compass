@@ -3,11 +3,16 @@ import Header from "../Header";
 
 interface Props {
   children: ReactNode;
+  page: string;
 }
 
-export default function Container({ children }: Props) {
+export default function Container({ children, page }: Props) {
   return (
-    <main className="flex flex-col gap-y-16 min-w-full min-h-full bg-neutral">
+    <main
+      className={`flex flex-col min-w-full min-h-full bg-neutral ${
+        page === "homepage" ? "gap-y-16" : "gap-y-0"
+      }`}
+    >
       <Header />
 
       {children}

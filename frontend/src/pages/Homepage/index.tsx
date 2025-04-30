@@ -6,11 +6,11 @@ import Products from "../../components/Homepage/Products";
 import Sellers from "../../components/Homepage/Sellers";
 import BottomBanner from "../../components/Homepage/BottomBanner";
 import PetKnowledge from "../../components/Homepage/PetKnowledge";
-import Footer from "../../components/Homepage/Footer";
+import Footer from "../../components/Common/Footer";
 
 export default function Homepage() {
   return (
-    <Container>
+    <Container page="homepage">
       <HeroBanner />
       <Pets />
       <MidBanner />
