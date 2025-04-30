@@ -11,7 +11,7 @@ export default function Category() {
     <Container page="category">
       <Path name={name} />
       <CategoryBanner />
-      <Products />
+      <Products name={name} />
       <Footer />
     </Container>
   );
