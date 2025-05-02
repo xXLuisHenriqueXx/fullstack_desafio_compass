@@ -1,5 +1,68 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Thin.ttf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-UltraLight.ttf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Light.ttf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Regular.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Medium.ttf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-SemiBold.ttf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/SVNGilroy_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-ExtraBold.ttf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Black.ttf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
 @theme {
   /* COLORS */
   --color-primary: rgba(0, 52, 89, 1);
@@ -27,6 +90,9 @@
   --color-state-apricot: rgba(255, 182, 114, 1);
   --color-state-silver: rgba(206, 206, 206, 1);
   --color-state-tan: rgba(255, 247, 206, 1);
+
+  /* FONTS */
+  --font-gilroy: "Gilroy", sans-serif;
 
   /* BACKGROUND IMAGES */
   --background-image-hero-banner: url("./assets/hero_banner.jpg");

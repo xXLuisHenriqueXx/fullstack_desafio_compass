@@ -21,7 +21,7 @@ export default function Costumer() {
   };
 
   return (
-    <section className="flex flex-col w-[calc(100% - 256px)] mx-32 px-8 py-6 mb-16">
+    <section className="flex flex-col max-w-full mx-32 px-8 py-6 mb-16">
       <h1 className="text-2xl font-bold text-neutral-100">
         Our lovely customer
       </h1>
@@ -40,9 +40,10 @@ export default function Costumer() {
             {items.map((item) => (
               <img
                 key={item}
-                src={`https://picsum.photos/id/${item}/200/200`}
-                alt={`Customer ${item}`}
                 className="w-60 h-[340px] rounded-lg object-cover"
+                src="https://placedog.net/300?random"
+                alt={`Customer ${item}`}
+                loading="lazy"
               />
             ))}
           </ul>

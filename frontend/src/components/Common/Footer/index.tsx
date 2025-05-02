@@ -1,9 +1,6 @@
-import Facebook from "@/assets/facebook_icon.svg";
-import Twitter from "@/assets/twitter_icon.svg";
-import Instagram from "@/assets/instagram_icon.svg";
-import Youtube from "@/assets/youtube_icon.svg";
-
 import LogoMonito from "@/assets/logo_monito.svg";
+import { ReactNode } from "react";
+import { Facebook, Twitter, Instagram, Youtube } from "../Icons";
 
 interface NavTextItemsProps {
   id: number;
@@ -13,7 +10,7 @@ interface NavTextItemsProps {
 
 interface NavIconItemsProps {
   id: number;
-  icon: string;
+  icon: ReactNode;
   action: () => void;
 }
 
@@ -43,22 +40,30 @@ const navTextItems: NavTextItemsProps[] = [
 const navIconItems: NavIconItemsProps[] = [
   {
     id: 1,
-    icon: Facebook,
+    icon: (
+      <Facebook className="w-6 h-6 fill-neutral-100 hover:fill-state-blue transition-all duration-300 cursor-pointer" />
+    ),
     action: () => {},
   },
   {
     id: 2,
-    icon: Twitter,
+    icon: (
+      <Twitter className="w-6 h-6 fill-neutral-100 hover:fill-state-blue transition-all duration-300 cursor-pointer" />
+    ),
     action: () => {},
   },
   {
     id: 3,
-    icon: Instagram,
+    icon: (
+      <Instagram className="w-6 h-6 fill-neutral-100 hover:fill-state-blue transition-all duration-300 cursor-pointer" />
+    ),
     action: () => {},
   },
   {
     id: 4,
-    icon: Youtube,
+    icon: (
+      <Youtube className="w-6 h-6 fill-neutral-100 hover:fill-state-blue transition-all duration-300 cursor-pointer" />
+    ),
     action: () => {},
   },
 ];
@@ -104,13 +109,10 @@ export default function Footer() {
           </ul>
 
           <ul className="flex flex-row items-center gap-x-10">
-            {navIconItems.map((item) => (
-              <img
-                key={item.id}
-                className="cursor-pointer"
-                src={item.icon}
-                alt="Social Icon"
-              />
+            {navIconItems.map(({ id, icon }) => (
+              <li key={id} className="cursor-pointer">
+                {icon}
+              </li>
             ))}
           </ul>
         </nav>
