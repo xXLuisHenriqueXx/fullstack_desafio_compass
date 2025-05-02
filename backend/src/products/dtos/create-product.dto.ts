@@ -5,8 +5,8 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-} from 'class-validator';
-import { ProdcutType } from 'src/common/enum/ProductType.enum';
+} from "class-validator";
+import { ProdcutType } from "src/common/enum/ProductType.enum";
 
 export class CreateProductDTO {
   @IsNumber()
@@ -24,7 +24,12 @@ export class CreateProductDTO {
 
   @IsOptional()
   @IsString()
-  color: string;
+  age: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  color: string[];
 
   @IsOptional()
   @IsBoolean()
@@ -47,8 +52,9 @@ export class CreateProductDTO {
   location: string;
 
   @IsOptional()
-  @IsString()
-  addInfo: string;
+  @IsArray()
+  @IsString({ each: true })
+  addInfo: string[];
 
   @IsArray()
   @IsString({ each: true })

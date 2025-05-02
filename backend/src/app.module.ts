@@ -7,6 +7,7 @@ import { Products } from './products/products.entity';
 import { APP_PIPE } from '@nestjs/core';
 import { ProductsController } from './products/products.controller';
 import { ProductsService } from './products/products.service';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -25,8 +26,9 @@ import { ProductsService } from './products/products.service';
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Products]),
+    ProductsModule,
   ],
-  controllers: [AppController, ProductsController],
-  providers: [AppService, ProductsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

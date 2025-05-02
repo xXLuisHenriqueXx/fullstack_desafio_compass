@@ -1,5 +1,5 @@
-import { ProdcutType } from 'src/common/enum/ProductType.enum';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProdcutType } from "src/common/enum/ProductType.enum";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Products {
@@ -15,39 +15,39 @@ export class Products {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   gender: string;
 
-  @Column()
+  @Column({ nullable: true })
   age: string;
 
-  @Column()
-  color: string;
+  @Column({ type: "text", array: true, nullable: true })
+  color: string[];
 
-  @Column()
+  @Column({ nullable: true })
   vaccinated: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   dewormed: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   certified: string;
 
-  @Column()
+  @Column({ nullable: true })
   microchip: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   location: string;
 
-  @Column()
-  addInfo: string;
+  @Column({ type: "text", array: true, nullable: true })
+  addInfo: string[];
 
-  @Column({ type: 'text', array: true })
+  @Column({ type: "text", array: true })
   images: string[];
 
-  @Column()
+  @Column({ nullable: true })
   gift: string;
 
-  @Column({ type: 'enum', enum: ProdcutType })
+  @Column({ type: "enum", enum: ProdcutType })
   type: string;
 }
