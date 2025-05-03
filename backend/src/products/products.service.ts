@@ -12,12 +12,6 @@ export class ProductsService {
     private readonly productsRepository: Repository<Products>
   ) {}
 
-  createProduct(createProductDTO: CreateProductDTO): Promise<Products> {
-    const product = this.productsRepository.create(createProductDTO);
-
-    return this.productsRepository.save(product);
-  }
-
   getAllProducts({
     limit,
     offset,
@@ -30,42 +24,53 @@ export class ProductsService {
   }: GetAllProductsDTO): Promise<Products[]> {
     const query = this.productsRepository.createQueryBuilder("products");
 
-    if (type) {
-      query.andWhere("product.type = :type", { type });
-    }
+    if (type) query.andWhere("product.type = :type", { type });
 
-    if (gender && gender.length > 0) {
+    if (gender && gender.length > 0)
       query.andWhere("product.gender IN (:...gender)", { gender });
-    }
 
-    if (color && color.length > 0) {
+    if (color && color.length > 0)
       query.andWhere("product.color IN (:...color)", { color });
-    }
 
-    if (breed && breed.length > 0) {
+    if (breed && breed.length > 0)
       query.andWhere("product.breed IN (:...breed)", { breed });
-    }
 
-    if (minPrice !== undefined) {
+    if (minPrice !== undefined)
       query.andWhere("product.price >= :minPrice", { minPrice });
-    }
 
-    if (maxPrice !== undefined) {
+    if (maxPrice !== undefined)
       query.andWhere("product.price <= :maxPrice", { maxPrice });
-    }
 
-    if (limit !== undefined) {
-      query.take(limit);
-    }
+    if (limit !== undefined) query.take(limit);
 
-    if (offset !== undefined) {
-      query.skip(offset);
-    }
+    if (offset !== undefined) query.skip(offset);
 
     return query.getMany();
   }
 
   getProductById(id: number): Promise<Products | null> {
     return this.productsRepository.findOneBy({ id });
+  }
+
+  createProduct(createProductDTO: CreateProductDTO): Promise<Products> {
+    const product = this.productsRepository.create(createProductDTO);
+
+    return this.productsRepository.save(product);
+  }
+
+  async updateProduct(id: number, attrs: Partial<Products>): Promise<Products> {
+    const product = await this.getProductById(id);
+    if (!product) throw new NotFoundException("Product not found");
+
+    Object.assign(product, attrs);
+
+    return this.productsRepository.save(product);
+  }
+
+  async deleteProduct(id: number): Promise<Products> {
+    const product = await this.getProductById(id);
+    if (!product) throw new NotFoundException("Product not found");
+
+    return this.productsRepository.remove(product);
   }
 }
