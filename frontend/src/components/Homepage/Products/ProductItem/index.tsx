@@ -3,11 +3,13 @@ import GiftIcon from "@/assets/gift_icon.svg";
 
 export default function ProductItem() {
   return (
-    <article
-      className="flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300"
-      style={{ flex: "1 1 calc(25% - 20px)" }}
-    >
-      <div className="w-full aspect-square rounded-lg bg-neutral-40" />
+    <article className="flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300">
+      <img
+        className="w-full aspect-square rounded-lg object-cover"
+        src={
+          "https://www.daxia.com.br/ptbr/wp-content/uploads/2021/05/iStock-1271494334-750x325.jpg"
+        }
+      />
 
       <div className="flex flex-col gap-y-1 text-left">
         <p className="text-base font-bold text-neutral-100">

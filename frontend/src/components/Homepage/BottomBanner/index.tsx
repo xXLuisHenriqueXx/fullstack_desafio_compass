@@ -25,7 +25,7 @@ export default function BottomBanner() {
             View Intro
             <CirclePlay size={20} />
           </button>
-          <button className="px-7 py-3.5 bg-primary hover:bg-neutral text-neutral hover:text-primary font-medium text-base rounded-full transition-all duration-300 cursor-pointer">
+          <button className="px-7 py-3.5 bg-primary hover:bg-state-blue text-neutral hover:text-primary font-medium text-base rounded-full transition-all duration-300 cursor-pointer">
             Explore Now
           </button>
         </div>
