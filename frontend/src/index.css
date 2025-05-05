@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Thin.ttf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-UltraLight.ttf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Light.ttf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Regular.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Medium.ttf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-SemiBold.ttf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/SVNGilroy_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-ExtraBold.ttf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/gilroy/Gilroy-Black.ttf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@theme {
+  /* COLORS */
+  --color-primary: rgba(0, 52, 89, 1);
+  --color-primary-40: rgba(1, 121, 205, 1);
+  --color-primary-60: rgba(0, 83, 141, 1);
+  --color-primary-80: rgba(0, 42, 72, 1);
+
+  --color-secondary: rgba(246, 219, 166, 1);
+  --color-secondary-40: rgba(252, 238, 213, 1);
+  --color-secondary-60: rgba(240, 209, 146, 1);
+  --color-secondary-80: rgba(238, 198, 127, 1);
+
+  --color-neutral: rgba(253, 253, 253, 1);
+  --color-neutral-10: rgba(234, 239, 239, 1);
+  --color-neutral-20: rgba(204, 209, 210, 1);
+  --color-neutral-40: rgba(153, 162, 165, 1);
+  --color-neutral-60: rgba(102, 116, 121, 1);
+  --color-neutral-80: rgba(36, 43, 51, 1);
+  --color-neutral-100: rgba(0, 23, 31, 1);
+
+  --color-state-red: rgba(255, 87, 78, 1);
+  --color-state-green: rgba(53, 198, 89, 1);
+  --color-state-orange: rgba(254, 145, 45, 1);
+  --color-state-blue: rgb(1, 167, 230, 1);
+  --color-state-apricot: rgba(255, 182, 114, 1);
+  --color-state-silver: rgba(206, 206, 206, 1);
+  --color-state-tan: rgba(255, 247, 206, 1);
+
+  /* FONTS */
+  --font-gilroy: "Gilroy", sans-serif;
+
+  /* BACKGROUND IMAGES */
+  --background-image-hero-banner: url("./assets/hero_banner.jpg");
+  --background-image-mid-banner: url("./assets/mid_banner.jpg");
+  --background-image-bottom-banner: url("./assets/bottom_banner.jpg");
+  --background-image-category-banner: url("./assets/category_banner.jpg");
+
+  /* SHADOW */
+  --shadow-card: 0 4px 28px -2px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 28px -2px rgba(0, 0, 0, 0.16);
+}
