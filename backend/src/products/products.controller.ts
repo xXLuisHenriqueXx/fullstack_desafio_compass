@@ -10,22 +10,44 @@ import {
   Query,
 } from "@nestjs/common";
 import { CreateProductDTO } from "./dtos/create-product.dto";
-import { Products } from "./products.entity";
 import { ProductsService } from "./products.service";
 import { GetAllProductsDTO } from "./dtos/get-all-products.dto";
 import { UpdateProductDTO } from "./dtos/update-product.dto";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { ProductsDTO } from "./dtos/products.dto";
 
 @Controller("products")
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
-  getAllProducts(@Query() query: GetAllProductsDTO): Promise<Products[]> {
+  @ApiOperation({
+    summary: "Return all products with query params from a DTO",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Return a products array",
+    isArray: true,
+    type: ProductsDTO,
+  })
+  getAllProducts(@Query() query: GetAllProductsDTO): Promise<ProductsDTO[]> {
     return this.productsService.getAllProducts(query);
   }
 
   @Get(":id")
-  async getProductById(@Param("id") id: string): Promise<Products> {
+  @ApiOperation({
+    summary: "Return a product who has the provided id",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Return a product",
+    type: ProductsDTO,
+  })
+  @ApiResponse({
+    status: 404,
+    description: "Product not found",
+  })
+  async getProductById(@Param("id") id: string): Promise<ProductsDTO> {
     const product = await this.productsService.getProductById(parseInt(id));
     if (!product) throw new NotFoundException("Product not found");
 
@@ -33,22 +55,46 @@ export class ProductsController {
   }
 
   @Post("create")
-  async createProduct(@Body() body: CreateProductDTO): Promise<Products> {
+  @ApiOperation({
+    summary: "Create a product",
+  })
+  @ApiResponse({
+    status: 201,
+    description: "Return the created product",
+    type: ProductsDTO,
+  })
+  async createProduct(@Body() body: CreateProductDTO): Promise<ProductsDTO> {
     const product = await this.productsService.createProduct(body);
 
     return product;
   }
 
   @Patch(":id")
+  @ApiOperation({
+    summary: "Update the info from a product who has the provided id",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Return the updated product",
+    type: ProductsDTO,
+  })
   updateProduct(
     @Param("id") id: string,
     @Body() body: UpdateProductDTO
-  ): Promise<Products> {
+  ): Promise<ProductsDTO> {
     return this.productsService.updateProduct(parseInt(id), body);
   }
 
   @Delete(":id")
-  deleteProduct(@Param("id") id: string): Promise<Products> {
+  @ApiOperation({
+    summary: "Delete a product who has the provided id",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Return the deleted product",
+    type: ProductsDTO,
+  })
+  deleteProduct(@Param("id") id: string): Promise<ProductsDTO> {
     return this.productsService.deleteProduct(parseInt(id));
   }
 }

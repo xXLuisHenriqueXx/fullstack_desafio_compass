@@ -1,4 +1,4 @@
-export enum ProdcutType {
-  PRODUCT = 'PRODUCT',
-  PET = 'PET',
+export enum ProductType {
+  PRODUCT = "PRODUCT",
+  PET = "PET",
 }

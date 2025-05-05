@@ -9,7 +9,11 @@ import {
 } from "class-validator";
 import { ProductType } from "../../common/enum/ProductType.enum";
 
-export class CreateProductDTO {
+export class ProductsDTO {
+  @ApiProperty()
+  @IsNumber()
+  id: number;
+
   @ApiProperty()
   @IsNumber()
   sku: number;
@@ -79,7 +83,7 @@ export class CreateProductDTO {
   @IsString()
   gift: string;
 
-  @ApiProperty()
+  @ApiProperty({ enum: ProductType, enumName: "ProductType" })
   @IsEnum(ProductType)
-  type: ProductType;
+  type: string;
 }

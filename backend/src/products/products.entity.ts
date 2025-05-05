@@ -1,4 +1,4 @@
-import { ProdcutType } from "src/common/enum/ProductType.enum";
+import { ProductType } from "../common/enum/ProductType.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -48,6 +48,6 @@ export class Products {
   @Column({ nullable: true })
   gift: string;
 
-  @Column({ type: "enum", enum: ProdcutType })
+  @Column({ type: "enum", enum: ProductType })
   type: string;
 }

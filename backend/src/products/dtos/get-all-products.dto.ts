@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Transform } from "class-transformer";
 import {
   IsArray,
@@ -6,23 +7,27 @@ import {
   IsOptional,
   IsString,
 } from "class-validator";
-import { ProdcutType } from "src/common/enum/ProductType.enum";
+import { ProductType } from "../../common/enum/ProductType.enum";
 
 export class GetAllProductsDTO {
+  @ApiProperty()
   @Transform(({ value }) => (value !== undefined ? parseInt(value) : undefined))
   @IsOptional()
   @IsNumber()
-  limit: number;
+  limit?: number;
 
+  @ApiProperty()
   @Transform(({ value }) => (value !== undefined ? parseInt(value) : undefined))
   @IsOptional()
   @IsNumber()
-  offset: number;
+  offset?: number;
 
+  @ApiProperty()
   @IsOptional()
-  @IsEnum(ProdcutType)
-  type: ProdcutType;
+  @IsEnum(ProductType)
+  type?: ProductType;
 
+  @ApiProperty()
   @Transform(({ value }) =>
     value !== undefined ? value.split(",") : undefined
   )
@@ -31,6 +36,7 @@ export class GetAllProductsDTO {
   @IsString({ each: true })
   gender: string[];
 
+  @ApiProperty()
   @Transform(({ value }) =>
     value !== undefined ? value.split(",") : undefined
   )
@@ -39,20 +45,23 @@ export class GetAllProductsDTO {
   @IsString({ each: true })
   color: string[];
 
+  @ApiProperty()
   @Transform(({ value }) =>
     value !== undefined ? parseFloat(value) : undefined
   )
   @IsOptional()
   @IsNumber()
-  minPrice: number;
+  minPrice?: number;
 
+  @ApiProperty()
   @Transform(({ value }) =>
     value !== undefined ? parseFloat(value) : undefined
   )
   @IsOptional()
   @IsNumber()
-  maxPrice: number;
+  maxPrice?: number;
 
+  @ApiProperty()
   @Transform(({ value }) =>
     value !== undefined ? value.split(",") : undefined
   )
