@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import PetsList from "./PetsList";
+import List from "../../Common/List";
 
 export default function Pets() {
   return (
@@ -18,7 +18,7 @@ export default function Pets() {
         </button>
       </header>
 
-      <PetsList />
+      <List numCols={4} numItems={8} />
     </section>
   );
 }

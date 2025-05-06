@@ -1,4 +1,4 @@
-import MorePuppiesList from "./MorePuppiesList";
+import List from "../../Common/List";
 
 export default function MorePuppies() {
   return (
@@ -10,7 +10,7 @@ export default function MorePuppies() {
         </div>
       </header>
 
-      <MorePuppiesList />
+      <List numCols={4} numItems={4} />
     </section>
   );
 }

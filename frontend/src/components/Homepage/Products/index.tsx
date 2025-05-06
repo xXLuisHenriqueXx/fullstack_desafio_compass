@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import ProductsList from "./ProductsList";
+import List from "../../Common/List";
 
 export default function Products() {
   return (
@@ -18,7 +18,7 @@ export default function Products() {
         </button>
       </header>
 
-      <ProductsList />
+      <List numCols={4} numItems={8} />
     </section>
   );
 }

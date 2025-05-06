@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
-import List from "./List";
 import PageNavigator from "./PageNavigator";
+import List from "../../../Common/List";
 
 export default function ProductsSection({
   name,
@@ -21,7 +21,7 @@ export default function ProductsSection({
         </button>
       </header>
 
-      <List />
+      <List numCols={3} numItems={15} />
 
       <PageNavigator />
     </section>
