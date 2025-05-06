@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:3000/products?limit=10&offset=0&gender=female
+GET http://localhost:3000/products?limit=2&offset=0&size=large
 
 ### 
 

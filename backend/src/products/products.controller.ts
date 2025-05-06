@@ -17,6 +17,7 @@ import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { ProductsDTO } from "./dtos/products.dto";
 import { petsData } from "../data/pets";
 import { productsData } from "src/data/products";
+import { GetAllProductsResponseDTO } from "./dtos/get-all-products-response.dto";
 
 @Controller("products")
 export class ProductsController {
@@ -28,11 +29,12 @@ export class ProductsController {
   })
   @ApiResponse({
     status: 200,
-    description: "Return a products array",
-    isArray: true,
-    type: ProductsDTO,
+    description: "Return a products array and total count",
+    type: GetAllProductsResponseDTO,
   })
-  getAllProducts(@Query() query: GetAllProductsDTO): Promise<ProductsDTO[]> {
+  getAllProducts(
+    @Query() query: GetAllProductsDTO
+  ): Promise<GetAllProductsResponseDTO> {
     return this.productsService.getAllProducts(query);
   }
 

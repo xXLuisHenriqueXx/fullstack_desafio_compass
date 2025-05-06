@@ -1,32 +1,33 @@
 import LogoMonito from "@/assets/logo_monito.svg";
 import { ChevronDown, Search, Star } from "lucide-react";
+import { NavLink } from "react-router";
 
 interface NavDataProps {
   id: number;
   name: string;
-  action: () => void;
+  url: string;
 }
 
 const navData: NavDataProps[] = [
   {
     id: 1,
     name: "Home",
-    action: () => {},
+    url: "/",
   },
   {
     id: 2,
     name: "Category",
-    action: () => {},
+    url: "category/ALL",
   },
   {
     id: 3,
     name: "About",
-    action: () => {},
+    url: "/",
   },
   {
     id: 4,
     name: "Contact",
-    action: () => {},
+    url: "/",
   },
 ];
 
@@ -38,12 +39,13 @@ export default function Header() {
 
         <ul className="flex flex-row gap-x-12">
           {navData.map((link) => (
-            <li
+            <NavLink
               key={link.id}
+              to={link.url}
               className="text-base font-bold text-primary hover:text-state-blue transition-all duration-300 cursor-pointer"
             >
               {link.name}
-            </li>
+            </NavLink>
           ))}
         </ul>
       </nav>

@@ -1,7 +1,13 @@
-export default function Path({ name }: { name: string | undefined }) {
+interface Props {
+  type: string;
+}
+
+export default function Path({ type }: Props) {
   return (
-    <p className="mt-28 mb-3 ml-32 text-sm font-medium text-neutral-60">
-      Home &nbsp;&rsaquo;&nbsp; Dog &nbsp;&rsaquo;&nbsp; {name}
-    </p>
+    <div className="flex flex-row gap-x-1.5 mt-28 mb-3 ml-32 text-sm font-medium text-neutral-60">
+      <p>Home</p>
+      <p>{">"}</p>
+      <p>{type}</p>
+    </div>
   );
 }

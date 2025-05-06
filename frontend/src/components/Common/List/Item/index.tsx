@@ -13,7 +13,7 @@ export default function Item({ data }: Props) {
   return (
     <li className="flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300">
       <img
-        className="w-full aspect-square rounded-lg object-cover"
+        className="max-w-full aspect-square rounded-lg object-cover"
         src={data?.images[0]}
         loading="lazy"
       />

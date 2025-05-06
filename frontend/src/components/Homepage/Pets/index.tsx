@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../../../common/interfaces/Product";
 import { productsService } from "../../../services/ProductsService";
 import { EnumProductType } from "../../../common/enum/ProductType";
+import { useNavigate } from "react-router";
 
 export default function Pets() {
+  const navigate = useNavigate();
   const [pets, setPets] = useState<IProduct[]>();
 
   useEffect(() => {
@@ -13,12 +15,18 @@ export default function Pets() {
   }, []);
 
   const getPets = async () => {
-    const response = await productsService.getAll({
-      limit: 8,
-      type: EnumProductType.PET,
-    });
+    await productsService
+      .getAll({
+        limit: 8,
+        type: EnumProductType.PET,
+      })
+      .then((response) => {
+        setPets(response.data.items);
+      });
+  };
 
-    setPets(response.data);
+  const navigateToCategory = () => {
+    navigate("/Category/PET");
   };
 
   return (
@@ -31,7 +39,10 @@ export default function Pets() {
           </h2>
         </div>
 
-        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
+        <button
+          onClick={navigateToCategory}
+          className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer"
+        >
           <p>View more</p>
           <ChevronRight size={16} />
         </button>

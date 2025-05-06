@@ -4,6 +4,8 @@ import { Products } from "./products.entity";
 import { Repository } from "typeorm";
 import { CreateProductDTO } from "./dtos/create-product.dto";
 import { GetAllProductsDTO } from "./dtos/get-all-products.dto";
+import { GetAllProductsResponseDTO } from "./dtos/get-all-products-response.dto";
+import { ProductsDTO } from "./dtos/products.dto";
 
 @Injectable()
 export class ProductsService {
@@ -12,7 +14,7 @@ export class ProductsService {
     private readonly productsRepository: Repository<Products>
   ) {}
 
-  getAllProducts({
+  async getAllProducts({
     limit,
     offset,
     type,
@@ -20,19 +22,20 @@ export class ProductsService {
     color,
     minPrice,
     maxPrice,
-    breed,
-  }: GetAllProductsDTO): Promise<Products[]> {
+    size,
+  }: GetAllProductsDTO): Promise<GetAllProductsResponseDTO> {
     const query = this.productsRepository.createQueryBuilder("products");
 
     if (type) query.andWhere("products.type = :type", { type });
 
-    if (gender) query.andWhere("products.gender = :gender", { gender });
+    if (gender && gender.length > 0)
+      query.andWhere("products.gender IN (:...gender)", { gender });
 
     if (color && color.length > 0)
       query.andWhere("products.color && :color", { color });
 
-    if (breed && breed.length > 0)
-      query.andWhere("products.size && :size", { breed });
+    if (size && size.length > 0)
+      query.andWhere("products.size IN (:...size)", { size });
 
     if (minPrice !== undefined)
       query.andWhere("products.price >= :minPrice", { minPrice });
@@ -44,14 +47,16 @@ export class ProductsService {
 
     if (offset !== undefined) query.skip(offset);
 
-    return query.getMany();
+    const [items, total] = await query.getManyAndCount();
+
+    return { items, total };
   }
 
   getProductById(id: number): Promise<Products | null> {
     return this.productsRepository.findOneBy({ id });
   }
 
-  createProduct(createProductDTO: CreateProductDTO): Promise<Products> {
+  createProduct(createProductDTO: CreateProductDTO): Promise<ProductsDTO> {
     const product = this.productsRepository.create(createProductDTO);
 
     return this.productsRepository.save(product);
@@ -65,7 +70,10 @@ export class ProductsService {
     return this.productsRepository.save(products);
   }
 
-  async updateProduct(id: number, attrs: Partial<Products>): Promise<Products> {
+  async updateProduct(
+    id: number,
+    attrs: Partial<Products>
+  ): Promise<ProductsDTO> {
     const product = await this.getProductById(id);
     if (!product) throw new NotFoundException("Product not found");
 
@@ -74,7 +82,7 @@ export class ProductsService {
     return this.productsRepository.save(product);
   }
 
-  async deleteProduct(id: number): Promise<Products> {
+  async deleteProduct(id: number): Promise<ProductsDTO> {
     const product = await this.getProductById(id);
     if (!product) throw new NotFoundException("Product not found");
 

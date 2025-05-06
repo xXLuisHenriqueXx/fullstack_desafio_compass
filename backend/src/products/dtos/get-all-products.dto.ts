@@ -28,9 +28,17 @@ export class GetAllProductsDTO {
   type?: ProductType;
 
   @ApiProperty()
+  @Transform(({ value }) =>
+    Array.isArray(value)
+      ? value
+      : value !== undefined
+        ? value.split(",")
+        : undefined
+  )
   @IsOptional()
-  @IsString()
-  gender: string;
+  @IsArray()
+  @IsString({ each: true })
+  gender: string[];
 
   @ApiProperty()
   @Transform(({ value }) =>
@@ -72,5 +80,5 @@ export class GetAllProductsDTO {
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  breed: string[];
+  size: string[];
 }

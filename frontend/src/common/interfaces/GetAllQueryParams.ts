@@ -4,9 +4,9 @@ export interface IGetAllProductsParams {
   limit?: number;
   offset?: number;
   type?: EnumProductType;
-  gender?: string;
+  gender?: string[];
   color?: string[];
   minPrice?: number;
   maxPrice?: number;
-  breed?: string[];
+  size?: string[];
 }

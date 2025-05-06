@@ -4,14 +4,19 @@ import CategoryBanner from "../../components/Category/CategoryBanner";
 import Path from "../../components/Category/Path";
 import Footer from "../../components/Common/Footer";
 import Products from "../../components/Category/Products";
+import { EnumProductType } from "../../common/enum/ProductType";
 
 export default function Category() {
-  const { name } = useParams<{ name: string }>();
+  const { type } = useParams<{ type: EnumProductType }>();
+  let typeText = "All";
+  if (type === EnumProductType.PET) typeText = "Pet";
+  if (type === EnumProductType.PRODUCT) typeText = "Product";
+
   return (
     <Container page="category">
-      <Path name={name} />
+      <Path type={typeText} />
       <CategoryBanner />
-      <Products name={name} />
+      <Products type={typeText} />
       <Footer />
     </Container>
   );
