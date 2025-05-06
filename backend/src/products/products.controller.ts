@@ -15,6 +15,8 @@ import { GetAllProductsDTO } from "./dtos/get-all-products.dto";
 import { UpdateProductDTO } from "./dtos/update-product.dto";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { ProductsDTO } from "./dtos/products.dto";
+import { petsData } from "../data/pets";
+import { productsData } from "src/data/products";
 
 @Controller("products")
 export class ProductsController {
@@ -67,6 +69,48 @@ export class ProductsController {
     const product = await this.productsService.createProduct(body);
 
     return product;
+  }
+
+  @Post("create-many")
+  @ApiOperation({
+    summary: "Create multiple products",
+  })
+  @ApiResponse({
+    status: 201,
+    description: "Return the created products",
+    type: ProductsDTO,
+    isArray: true,
+  })
+  async createManyProducts(
+    @Body() body: CreateProductDTO[]
+  ): Promise<ProductsDTO[]> {
+    const products = await this.productsService.createManyProducts(body);
+
+    return products;
+  }
+
+  @Post("seed/pets")
+  @ApiOperation({
+    summary: "Seed the database with pets informations",
+  })
+  @ApiResponse({
+    status: 201,
+    description: "No returns",
+  })
+  async seedPets(): Promise<void> {
+    await this.productsService.createManyProducts(petsData as any);
+  }
+
+  @Post("seed/products")
+  @ApiOperation({
+    summary: "Seed the database with products informations",
+  })
+  @ApiResponse({
+    status: 201,
+    description: "No returns",
+  })
+  async seedProducts(): Promise<void> {
+    await this.productsService.createManyProducts(productsData as any);
   }
 
   @Patch(":id")

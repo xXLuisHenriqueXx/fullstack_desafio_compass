@@ -30,6 +30,11 @@ export class CreateProductDTO {
   @ApiProperty()
   @IsOptional()
   @IsString()
+  size: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
   age: string;
 
   @ApiProperty()
@@ -78,6 +83,11 @@ export class CreateProductDTO {
   @IsOptional()
   @IsString()
   gift: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  category: string;
 
   @ApiProperty()
   @IsEnum(ProductType)

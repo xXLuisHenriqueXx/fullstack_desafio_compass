@@ -32,6 +32,11 @@ export class UpdateProductDTO {
   @ApiProperty()
   @IsOptional()
   @IsString()
+  size: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
   age: string;
 
   @ApiProperty()
@@ -81,4 +86,9 @@ export class UpdateProductDTO {
   @IsOptional()
   @IsString()
   gift: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  category: string;
 }

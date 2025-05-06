@@ -28,17 +28,17 @@ export class GetAllProductsDTO {
   type?: ProductType;
 
   @ApiProperty()
-  @Transform(({ value }) =>
-    value !== undefined ? value.split(",") : undefined
-  )
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  gender: string[];
+  @IsString()
+  gender: string;
 
   @ApiProperty()
   @Transform(({ value }) =>
-    value !== undefined ? value.split(",") : undefined
+    Array.isArray(value)
+      ? value
+      : value !== undefined
+        ? value.split(",")
+        : undefined
   )
   @IsOptional()
   @IsArray()
@@ -63,7 +63,11 @@ export class GetAllProductsDTO {
 
   @ApiProperty()
   @Transform(({ value }) =>
-    value !== undefined ? value.split(",") : undefined
+    Array.isArray(value)
+      ? value
+      : value !== undefined
+        ? value.split(",")
+        : undefined
   )
   @IsOptional()
   @IsArray()

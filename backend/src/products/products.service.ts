@@ -24,22 +24,21 @@ export class ProductsService {
   }: GetAllProductsDTO): Promise<Products[]> {
     const query = this.productsRepository.createQueryBuilder("products");
 
-    if (type) query.andWhere("product.type = :type", { type });
+    if (type) query.andWhere("products.type = :type", { type });
 
-    if (gender && gender.length > 0)
-      query.andWhere("product.gender IN (:...gender)", { gender });
+    if (gender) query.andWhere("products.gender = :gender", { gender });
 
     if (color && color.length > 0)
-      query.andWhere("product.color IN (:...color)", { color });
+      query.andWhere("products.color && :color", { color });
 
     if (breed && breed.length > 0)
-      query.andWhere("product.breed IN (:...breed)", { breed });
+      query.andWhere("products.size && :size", { breed });
 
     if (minPrice !== undefined)
-      query.andWhere("product.price >= :minPrice", { minPrice });
+      query.andWhere("products.price >= :minPrice", { minPrice });
 
     if (maxPrice !== undefined)
-      query.andWhere("product.price <= :maxPrice", { maxPrice });
+      query.andWhere("products.price <= :maxPrice", { maxPrice });
 
     if (limit !== undefined) query.take(limit);
 
@@ -56,6 +55,14 @@ export class ProductsService {
     const product = this.productsRepository.create(createProductDTO);
 
     return this.productsRepository.save(product);
+  }
+
+  createManyProducts(
+    createProductDTOs: CreateProductDTO[]
+  ): Promise<Products[]> {
+    const products = this.productsRepository.create(createProductDTOs);
+
+    return this.productsRepository.save(products);
   }
 
   async updateProduct(id: number, attrs: Partial<Products>): Promise<Products> {

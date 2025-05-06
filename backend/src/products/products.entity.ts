@@ -12,7 +12,7 @@ export class Products {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: "float" })
   price: number;
 
   @Column({ nullable: true })
@@ -47,6 +47,12 @@ export class Products {
 
   @Column({ nullable: true })
   gift: string;
+
+  @Column({ nullable: true })
+  category: string;
+
+  @Column({ nullable: true })
+  size: string;
 
   @Column({ type: "enum", enum: ProductType })
   type: string;
