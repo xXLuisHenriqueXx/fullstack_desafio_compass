@@ -3,7 +3,7 @@ import { api } from "./Api";
 
 export const productsService = {
   getAll: async (params: IGetAllProductsParams) => {
-    const baseUrl = "/products?";
+    const baseUrl = "/products";
     const queryArray: string[] = [];
 
     Object.entries(params).forEach(([key, value]) => {

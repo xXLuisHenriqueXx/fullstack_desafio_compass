@@ -3,6 +3,7 @@ export interface IUpdateProductParams {
   name: string;
   price: number;
   gender?: string;
+  size?: string;
   age?: string;
   color: string[];
   vaccinated?: boolean;
@@ -13,4 +14,5 @@ export interface IUpdateProductParams {
   addInfo?: string[];
   images: string[];
   gift?: string;
+  category?: string;
 }

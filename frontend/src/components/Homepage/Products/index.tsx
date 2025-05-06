@@ -1,13 +1,32 @@
 import { ChevronRight } from "lucide-react";
 import List from "../../Common/List";
+import { useEffect, useState } from "react";
+import { IProduct } from "../../../common/interfaces/Product";
+import { EnumProductType } from "../../../common/enum/ProductType";
+import { productsService } from "../../../services/ProductsService";
 
 export default function Products() {
+  const [products, setProducts] = useState<IProduct[]>();
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = async () => {
+    const response = await productsService.getAll({
+      limit: 8,
+      type: EnumProductType.PRODUCT,
+    });
+
+    setProducts(response.data);
+  };
+
   return (
     <section className="flex flex-col w-full px-32">
       <header className="flex flex-row items-end justify-between w-full mb-9">
         <div>
           <h3 className="text-base font-medium text-black">
-            Hard to choose right products for your pets?
+            Hard to choose right products for your products?
           </h3>
           <h2 className="text-2xl font-bold text-primary">Our Products</h2>
         </div>
@@ -18,7 +37,7 @@ export default function Products() {
         </button>
       </header>
 
-      <List numCols={4} numItems={8} />
+      <List numCols={4} data={products} />
     </section>
   );
 }

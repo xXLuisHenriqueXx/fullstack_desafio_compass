@@ -72,7 +72,7 @@ export default function Header() {
             <Star color="#FFDA44" size={8} />
           </div>
 
-          <p className="text-base font-medium text-primary-80">VND</p>
+          <p className="text-base font-medium text-primary-80">$</p>
 
           <ChevronDown className="text-primary-80 cursor-pointer" size={18} />
         </article>

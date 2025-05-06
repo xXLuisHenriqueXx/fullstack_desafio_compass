@@ -1,7 +1,26 @@
 import { ChevronRight } from "lucide-react";
 import List from "../../Common/List";
+import { useEffect, useState } from "react";
+import { IProduct } from "../../../common/interfaces/Product";
+import { productsService } from "../../../services/ProductsService";
+import { EnumProductType } from "../../../common/enum/ProductType";
 
 export default function Pets() {
+  const [pets, setPets] = useState<IProduct[]>();
+
+  useEffect(() => {
+    getPets();
+  }, []);
+
+  const getPets = async () => {
+    const response = await productsService.getAll({
+      limit: 8,
+      type: EnumProductType.PET,
+    });
+
+    setPets(response.data);
+  };
+
   return (
     <section className="flex flex-col w-full px-32">
       <header className="flex flex-row items-end justify-between w-full mb-9">
@@ -18,7 +37,7 @@ export default function Pets() {
         </button>
       </header>
 
-      <List numCols={4} numItems={8} />
+      <List numCols={4} data={pets} />
     </section>
   );
 }

@@ -5,6 +5,7 @@ export interface ICreateProductParams {
   name: string;
   price: number;
   gender?: string;
+  size?: string;
   age?: string;
   color: string[];
   vaccinated?: boolean;
@@ -15,5 +16,6 @@ export interface ICreateProductParams {
   addInfo?: string[];
   images: string[];
   gift?: string;
+  category?: string;
   type: EnumProductType;
 }
