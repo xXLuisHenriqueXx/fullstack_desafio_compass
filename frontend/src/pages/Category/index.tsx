@@ -13,7 +13,7 @@ export default function Category() {
   if (type === EnumProductType.PRODUCT) typeText = "Product";
 
   return (
-    <Container page="category">
+    <Container page="another">
       <Path type={typeText} />
       <CategoryBanner />
       <Products type={typeText} />

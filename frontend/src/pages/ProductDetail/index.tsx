@@ -21,7 +21,7 @@ export default function ProductDetail() {
   }, []);
 
   return (
-    <Container page="product-detail">
+    <Container page="another">
       <Detail data={item} />
       <Costumer />
       <More type={item?.type} />
