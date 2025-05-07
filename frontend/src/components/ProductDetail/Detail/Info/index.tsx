@@ -2,6 +2,7 @@ import { MessageSquareMore } from "lucide-react";
 import { IProduct } from "../../../../common/interfaces/Product";
 import { EnumProductType } from "../../../../common/enum/ProductType";
 import Pet from "./Pet";
+import Product from "./Product";
 
 interface Props {
   data: IProduct | undefined;
@@ -11,7 +12,7 @@ export default function Info({ data }: Props) {
   const isPet = data?.type === EnumProductType.PET;
 
   return (
-    <article className="flex flex-col items-start gap-y-5 max-w-1/2">
+    <article className="flex flex-col items-start w-full gap-y-5 max-w-1/2">
       <div className="flex flex-row items-center gap-x-2 text-sm font-medium text-neutral-60">
         <p>Home</p>
         <p>{">"}</p>
@@ -42,7 +43,7 @@ export default function Info({ data }: Props) {
         </button>
       </div>
 
-      {isPet && <Pet data={data} />}
+      {isPet ? <Pet data={data} /> : <Product data={data} />}
     </article>
   );
 }
