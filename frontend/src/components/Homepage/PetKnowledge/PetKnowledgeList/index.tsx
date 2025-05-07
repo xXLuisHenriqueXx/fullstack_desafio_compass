@@ -1,7 +1,9 @@
+import { tv } from "tailwind-variants";
+
+import PetKnowledgeItem from "../PetKnowledgeItem";
 import PetKnow1 from "@/assets/pet_know1.jpg";
 import PetKnow2 from "@/assets/pet_know2.jpg";
 import PetKnow3 from "@/assets/pet_know3.jpg";
-import PetKnowledgeItem from "../PetKnowledgeItem";
 
 export interface PetKnowDataProps {
   id: number;
@@ -9,6 +11,10 @@ export interface PetKnowDataProps {
   title: string;
   description: string;
 }
+
+const container = tv({
+  base: "grid grid-cols-3 w-full gap-5",
+});
 
 const petKnowData: PetKnowDataProps[] = [
   {
@@ -37,7 +43,7 @@ const petKnowData: PetKnowDataProps[] = [
 
 export default function PetKnowledgeList() {
   return (
-    <ul className="flex flex-row flex-wrap justify-between w-full gap-5">
+    <ul className={container()}>
       {petKnowData.map((item) => (
         <PetKnowledgeItem
           key={item.id}

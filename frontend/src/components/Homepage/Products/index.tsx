@@ -1,10 +1,23 @@
-import { ChevronRight } from "lucide-react";
-import List from "../../Common/List";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { tv } from "tailwind-variants";
+import { ChevronRight } from "lucide-react";
+
+import List from "../../Common/List";
 import { IProduct } from "../../../common/interfaces/Product";
 import { EnumProductType } from "../../../common/enum/ProductType";
 import { productsService } from "../../../services/ProductsService";
-import { useNavigate } from "react-router";
+
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col w-full px-32",
+    containerHeader: "flex flex-row items-end justify-between w-full mb-9",
+    title: "text-2xl font-bold text-primary",
+    subtitle: "text-base font-medium text-black",
+  },
+});
+
+const { containerMain, containerHeader, title, subtitle } = card();
 
 export default function Products() {
   const navigate = useNavigate();
@@ -30,13 +43,13 @@ export default function Products() {
   };
 
   return (
-    <section className="flex flex-col w-full px-32">
-      <header className="flex flex-row items-end justify-between w-full mb-9">
+    <section className={containerMain()}>
+      <header className={containerHeader()}>
         <div>
-          <h3 className="text-base font-medium text-black">
+          <h3 className={subtitle()}>
             Hard to choose right products for your products?
           </h3>
-          <h2 className="text-2xl font-bold text-primary">Our Products</h2>
+          <h2 className={title()}>Our Products</h2>
         </div>
 
         <button

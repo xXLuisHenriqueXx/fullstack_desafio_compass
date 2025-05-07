@@ -1,10 +1,23 @@
-import { ChevronRight } from "lucide-react";
-import List from "../../Common/List";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { tv } from "tailwind-variants";
+import { ChevronRight } from "lucide-react";
+
+import List from "../../Common/List";
 import { IProduct } from "../../../common/interfaces/Product";
 import { productsService } from "../../../services/ProductsService";
 import { EnumProductType } from "../../../common/enum/ProductType";
-import { useNavigate } from "react-router";
+
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col w-full px-32",
+    containerHeader: "flex flex-row items-end justify-between w-full mb-9",
+    title: "text-2xl font-bold text-primary",
+    subtitle: "text-base font-medium text-black",
+  },
+});
+
+const { containerMain, containerHeader, title, subtitle } = card();
 
 export default function Pets() {
   const navigate = useNavigate();
@@ -30,13 +43,11 @@ export default function Pets() {
   };
 
   return (
-    <section className="flex flex-col w-full px-32">
-      <header className="flex flex-row items-end justify-between w-full mb-9">
+    <section className={containerMain()}>
+      <header className={containerHeader()}>
         <div>
-          <h3 className="text-base font-medium text-black">Whats new?</h3>
-          <h2 className="text-2xl font-bold text-primary">
-            Take a look at some of our pets
-          </h2>
+          <h3 className={subtitle()}>Whats new?</h3>
+          <h2 className={title()}>Take a look at some of our pets</h2>
         </div>
 
         <button

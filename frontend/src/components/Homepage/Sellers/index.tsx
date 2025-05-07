@@ -1,3 +1,4 @@
+import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import ShebaLogo from "@/assets/sheba_logo.svg";
@@ -13,6 +14,27 @@ interface SellerDataProps {
   logo: string;
   alt: string;
 }
+
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col w-full px-32 py-10",
+    containerHeaderUl: "flex flex-row justify-between w-full",
+    title: "text-base font-medium text-black",
+    highlightText: "text-2xl font-bold text-primary",
+  },
+  variants: {
+    type: {
+      header: {
+        containerHeaderUl: "items-end mb-9",
+      },
+      ul: {
+        containerHeaderUl: "items-center gap-x-5",
+      },
+    },
+  },
+});
+
+const { containerMain, containerHeaderUl, title, highlightText } = card();
 
 const sellerData: SellerDataProps[] = [
   {
@@ -54,11 +76,11 @@ const sellerData: SellerDataProps[] = [
 
 export default function Sellers() {
   return (
-    <section className="flex flex-col w-full px-32 py-10">
-      <header className="flex flex-row items-end justify-between w-full mb-9">
-        <h2 className="text-base font-medium text-black">
+    <section className={containerMain()}>
+      <header className={containerHeaderUl({ type: "header" })}>
+        <h2 className={title()}>
           Proud to be part of{" "}
-          <span className="text-2xl font-bold text-primary">Pet Sellers</span>
+          <span className={highlightText()}>Pet Sellers</span>
         </h2>
 
         <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
@@ -67,9 +89,9 @@ export default function Sellers() {
         </button>
       </header>
 
-      <ul className="flex flex-row items-center justify-between w-full gap-x-5">
+      <ul className={containerHeaderUl({ type: "ul" })}>
         {sellerData.map((item) => (
-          <img key={item.id} src={item.logo} alt={item.alt} />
+          <img key={item.id} src={item.logo} />
         ))}
       </ul>
     </section>
