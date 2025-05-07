@@ -2,16 +2,25 @@ import { Dot } from "lucide-react";
 import { IProduct } from "../../../../common/interfaces/Product";
 import { EnumProductType } from "../../../../common/enum/ProductType";
 import GiftIcon from "../../../../assets/gift_icon.svg";
+import { useNavigate } from "react-router";
 
 interface Props {
   data?: IProduct;
 }
 
 export default function Item({ data }: Props) {
+  const navigate = useNavigate();
   const isPet = data?.type === EnumProductType.PET;
 
+  const navigateToProductDetail = (id: number | undefined) => {
+    navigate(`/product/detail/${id}`);
+  };
+
   return (
-    <li className="flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300">
+    <li
+      className="flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300"
+      onClick={() => navigateToProductDetail(data?.id)}
+    >
       <img
         className="max-w-full aspect-square rounded-lg object-cover"
         src={data?.images[0]}

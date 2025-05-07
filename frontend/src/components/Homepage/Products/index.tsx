@@ -15,14 +15,14 @@ export default function Products() {
   }, []);
 
   const getProducts = async () => {
-    await productsService
-      .getAll({
-        limit: 8,
-        type: EnumProductType.PRODUCT,
-      })
-      .then((response) => {
-        setProducts(response.data.items);
-      });
+    const params = {
+      limit: 8,
+      type: EnumProductType.PRODUCT,
+    };
+
+    await productsService.getAll(params).then((response) => {
+      setProducts(response.data.items);
+    });
   };
 
   const navigateToCategory = () => {

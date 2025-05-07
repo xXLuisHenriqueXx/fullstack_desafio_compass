@@ -15,14 +15,14 @@ export default function Pets() {
   }, []);
 
   const getPets = async () => {
-    await productsService
-      .getAll({
-        limit: 8,
-        type: EnumProductType.PET,
-      })
-      .then((response) => {
-        setPets(response.data.items);
-      });
+    const params = {
+      limit: 8,
+      type: EnumProductType.PET,
+    };
+
+    await productsService.getAll(params).then((response) => {
+      setPets(response.data.items);
+    });
   };
 
   const navigateToCategory = () => {

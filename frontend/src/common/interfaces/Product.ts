@@ -19,4 +19,5 @@ export interface IProduct {
   gift?: string;
   category?: string;
   type: EnumProductType;
+  createdDate: Date;
 }

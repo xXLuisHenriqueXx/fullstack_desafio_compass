@@ -1,5 +1,10 @@
 import { ProductType } from "../common/enum/ProductType.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity()
 export class Products {
@@ -56,4 +61,7 @@ export class Products {
 
   @Column({ type: "enum", enum: ProductType })
   type: string;
+
+  @CreateDateColumn()
+  createdDate: Date;
 }

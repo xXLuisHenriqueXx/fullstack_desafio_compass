@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsArray,
   IsBoolean,
+  IsDate,
   IsEnum,
   IsNumber,
   IsOptional,
@@ -96,4 +97,8 @@ export class ProductsDTO {
   @ApiProperty({ enum: ProductType, enumName: "ProductType" })
   @IsEnum(ProductType)
   type: string;
+
+  @ApiProperty()
+  @IsDate()
+  createdDate: Date;
 }
