@@ -1,75 +1,84 @@
+import { tv } from "tailwind-variants";
 import { IProduct } from "../../../../../common/interfaces/Product";
 
 interface Props {
   data: IProduct | undefined;
 }
 
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col w-full max-w-full",
+    containerInfo:
+      "grid grid-cols-2 justify-items-start place-items-start w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60 capitalize",
+  },
+});
+
+const { containerMain, containerInfo } = card();
+
 export default function Pet({ data }: Props) {
   return (
-    <div className="flex flex-col w-full max-w-full">
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">SKU</p>
-        <p className="w-1/2 capitalize">: #{data?.sku}</p>
+    <div className={containerMain()}>
+      <div className={containerInfo()}>
+        <p>SKU</p>
+        <p>: #{data?.sku}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Gender</p>
-        <p className="w-1/2 capitalize">: {data?.gender}</p>
+      <div className={containerInfo()}>
+        <p>Gender</p>
+        <p>: {data?.gender}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Age</p>
-        <p className="w-1/2 capitalize">: {data?.age}</p>
+      <div className={containerInfo()}>
+        <p>Age</p>
+        <p>: {data?.age}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Size</p>
-        <p className="w-1/2 capitalize">: {data?.size}</p>
+      <div className={containerInfo()}>
+        <p>Size</p>
+        <p>: {data?.size}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Color</p>
-        <p className="w-1/2 capitalize">: {data?.color?.join(" & ")}</p>
+      <div className={containerInfo()}>
+        <p>Color</p>
+        <p>: {data?.color?.join(" & ")}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Vaccinated</p>
-        <p className="w-1/2 capitalize">: {data?.vaccinated ? "Yes" : "No"}</p>
+      <div className={containerInfo()}>
+        <p>Vaccinated</p>
+        <p>: {data?.vaccinated ? "Yes" : "No"}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Dewormed</p>
-        <p className="w-1/2 capitalize">: {data?.dewormed ? "Yes" : "No"}</p>
+      <div className={containerInfo()}>
+        <p>Dewormed</p>
+        <p>: {data?.dewormed ? "Yes" : "No"}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Cert</p>
-        <p className="w-1/2 capitalize">
-          : {data?.certified ? `Yes (${data?.certified})` : "No"}
-        </p>
+      <div className={containerInfo()}>
+        <p>Cert</p>
+        <p>: {data?.certified ? `Yes (${data?.certified})` : "No"}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Microchip</p>
-        <p className="w-1/2 capitalize">: {data?.microchip ? "Yes" : "No"}</p>
+      <div className={containerInfo()}>
+        <p>Microchip</p>
+        <p>: {data?.microchip ? "Yes" : "No"}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Location</p>
-        <p className="w-1/2 capitalize">: {data?.location}</p>
+      <div className={containerInfo()}>
+        <p>Location</p>
+        <p>: {data?.location}</p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Published Date</p>
-        <p className="w-1/2 capitalize">
+      <div className={containerInfo()}>
+        <p>Published Date</p>
+        <p>
           :{" "}
           {data?.createdDate && new Date(data.createdDate).toLocaleDateString()}
         </p>
       </div>
 
-      <div className="flex flex-row items-center justify-evenly w-full py-2 border-b border-neutral-10 text-sm font-medium text-neutral-60">
-        <p className="w-1/2 capitalize">Additional Information</p>
-        <div className="w-1/2 capitalize">
+      <div className={containerInfo()}>
+        <p>Additional Information</p>
+        <div>
           {data?.addInfo?.map((item, index) => (
             <p key={index}>
               {index === 0 ? ": " : "\u00A0\u00A0"}

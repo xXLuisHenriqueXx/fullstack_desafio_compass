@@ -1,6 +1,36 @@
 import { useRef, useState } from "react";
+import { tv } from "tailwind-variants";
 
-const data = [
+interface DataProps {
+  id: number;
+  src: string;
+}
+
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col max-w-full mx-32 px-8 py-6 mb-16",
+    containerImages: "flex flex-row gap-x-3 mt-3 mb-6",
+    containerDots: "flex flex-row justify-center gap-x-1.5",
+    title: "text-2xl font-bold text-neutral-100",
+    image: "w-60 h-[340px] rounded-lg object-cover",
+    dots: "h-2 transition-all duration-300 ease-in-out rounded-full",
+  },
+  variants: {
+    active: {
+      yes: {
+        dots: "w-5 bg-primary",
+      },
+      no: {
+        dots: "w-2 bg-neutral-20",
+      },
+    },
+  },
+});
+
+const { containerMain, containerImages, containerDots, title, image, dots } =
+  card();
+
+const data: DataProps[] = [
   {
     id: 1,
     src: "https://media.istockphoto.com/id/1325997469/photo/active-ethnic-senior-woman-enjoying-the-outdoors-with-her-pet-dog.jpg?s=612x612&w=0&k=20&c=ZV-0heA3MYuwT5IGGnTQwEA1t3aekl8yoNqjTRbtnrM=",
@@ -78,10 +108,8 @@ export default function Costumer() {
   };
 
   return (
-    <section className="flex flex-col max-w-full mx-32 px-8 py-6 mb-16">
-      <h1 className="text-2xl font-bold text-neutral-100">
-        Our lovely customer
-      </h1>
+    <section className={containerMain()}>
+      <h1 className={title()}>Our lovely customer</h1>
 
       <article>
         <div
@@ -93,11 +121,11 @@ export default function Costumer() {
             msOverflowStyle: "none",
           }}
         >
-          <ul className="flex flex-row gap-x-3 mt-3 mb-6">
+          <ul className={containerImages()}>
             {data.map((item) => (
               <img
                 key={item.id}
-                className="w-60 h-[340px] rounded-lg object-cover"
+                className={image()}
                 src={item.src}
                 loading="lazy"
               />
@@ -105,14 +133,12 @@ export default function Costumer() {
           </ul>
         </div>
 
-        <div className="flex flex-row justify-center gap-x-1.5">
-          {Array.from({ length: 6 }).map((_, idx) => (
+        <div className={containerDots()}>
+          {Array.from({ length: 6 }).map((_, index) => (
             <div
-              key={idx}
-              className={`h-2 transition-all duration-300 ease-in-out rounded-full ${
-                activeDot === idx ? "w-5 bg-primary" : "w-2 bg-neutral-20"
-              }`}
-            ></div>
+              key={index}
+              className={dots({ active: activeDot === index ? "yes" : "no" })}
+            />
           ))}
         </div>
       </article>
