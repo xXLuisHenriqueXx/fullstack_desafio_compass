@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import { useProductsStore } from "../../../states/ProductsState";
+import { tv } from "tailwind-variants";
+
 import ProductsSection from "./ProductsSection";
 import Sidebar from "./Sidebar";
 import { IProduct } from "../../../common/interfaces/Product";
 import { productsService } from "../../../services/ProductsService";
 import { EnumProductType } from "../../../common/enum/ProductType";
+import { useProductsStore } from "../../../states/ProductsState";
 
 interface Props {
   type: string;
 }
+
+const container = tv({
+  base: "flex flex-row items-start gap-x-5 px-32 pt-9 pb-15",
+});
 
 export default function Products({ type }: Props) {
   const { filters, page } = useProductsStore();
@@ -35,7 +41,7 @@ export default function Products({ type }: Props) {
   }, [filters, page, type]);
 
   return (
-    <section className="flex flex-row items-start gap-x-5 px-32 pt-9 pb-15">
+    <section className={container()}>
       <Sidebar type={typeEnum} />
       <ProductsSection name={type} data={products} total={total} />
     </section>

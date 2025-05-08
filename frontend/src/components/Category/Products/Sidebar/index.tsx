@@ -1,9 +1,33 @@
+import { tv } from "tailwind-variants";
 import { EnumProductType } from "../../../../common/enum/ProductType";
 import { useProductsStore } from "../../../../states/ProductsState";
 
 interface Props {
   type: EnumProductType | undefined;
 }
+
+const card = tv({
+  slots: {
+    containerMain:
+      "flex flex-col items-start w-1/5 text-sm font-medium text-neutral-100 accent-primary",
+    containerCheckboxes:
+      "flex flex-col items-start w-full mt-4 pb-4 border-b border-neutral-10",
+    containerColor: "w-4 aspect-square bg-state-red rounded-full",
+    labelCheckbox: "flex flex-row items-center gap-x-2.5",
+    title: "text-2xl font-bold text-primary",
+    subtitle: "mb-2.5 text-base font-bold",
+  },
+  variants: {
+    mb: {
+      2: {
+        labelCheckbox: "mb-2",
+      },
+    },
+  },
+});
+
+const { containerMain, containerCheckboxes, labelCheckbox, title, subtitle } =
+  card();
 
 export default function Sidebar({ type }: Props) {
   const { filters, setFilters } = useProductsStore();
@@ -47,17 +71,14 @@ export default function Sidebar({ type }: Props) {
   };
 
   return (
-    <aside className="flex flex-col items-start w-1/5 text-sm font-medium text-neutral-100 accent-primary">
-      <h1 className="text-2xl font-bold text-primary">Filter</h1>
+    <aside className={containerMain()}>
+      <h1 className={title()}>Filter</h1>
 
       {isPet && (
-        <article className="flex flex-col items-start w-full mt-4 pb-4 border-b border-neutral-10">
-          <h2 className="mb-2.5 text-base font-bold">Gender</h2>
+        <article className={containerCheckboxes()}>
+          <h2 className={subtitle()}>Gender</h2>
 
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="male"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="male">
             <input
               id="male"
               type="checkbox"
@@ -66,10 +87,7 @@ export default function Sidebar({ type }: Props) {
             Male
           </label>
 
-          <label
-            className="flex flex-row items-center gap-x-2.5"
-            htmlFor="female"
-          >
+          <label className={labelCheckbox()} htmlFor="female">
             <input
               id="female"
               type="checkbox"
@@ -81,12 +99,9 @@ export default function Sidebar({ type }: Props) {
       )}
 
       {isPet && (
-        <article className="flex flex-col items-start w-full mt-4 pb-4 border-b border-neutral-10">
-          <h2 className="mb-2.5 text-base font-bold">Color</h2>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="red"
-          >
+        <article className={containerCheckboxes()}>
+          <h2 className={subtitle()}>Color</h2>
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="red">
             <input
               id="red"
               type="checkbox"
@@ -95,10 +110,7 @@ export default function Sidebar({ type }: Props) {
             <div className="w-4 aspect-square bg-state-red rounded-full" />
             Red
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="apricot"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="apricot">
             <input
               id="apricot"
               type="checkbox"
@@ -107,10 +119,7 @@ export default function Sidebar({ type }: Props) {
             <div className="w-4 aspect-square bg-state-apricot rounded-full" />
             Apricot
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="black"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="black">
             <input
               id="black"
               type="checkbox"
@@ -119,10 +128,7 @@ export default function Sidebar({ type }: Props) {
             <div className="w-4 aspect-square bg-black rounded-full" />
             Black
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="black-white"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="black-white">
             <input
               id="black-white"
               type="checkbox"
@@ -136,10 +142,7 @@ export default function Sidebar({ type }: Props) {
             />
             {`Black & white`}
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="silver"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="silver">
             <input
               id="silver"
               type="checkbox"
@@ -148,7 +151,7 @@ export default function Sidebar({ type }: Props) {
             <div className="w-4 aspect-square bg-state-silver rounded-full" />
             Silver
           </label>
-          <label className="flex flex-row items-center gap-x-2.5" htmlFor="tan">
+          <label className={labelCheckbox()} htmlFor="tan">
             <input
               id="tan"
               type="checkbox"
@@ -160,9 +163,9 @@ export default function Sidebar({ type }: Props) {
         </article>
       )}
 
-      <article className="flex flex-col items-start w-full mt-4 pb-4 border-b border-neutral-10">
-        <h2 className="mb-2.5 text-base font-bold">Price</h2>
-        <div className="flex flex-row items-center gap-x-2.5 mb-2">
+      <article className={containerCheckboxes()}>
+        <h2 className={subtitle()}>Price</h2>
+        <div className={labelCheckbox({ mb: 2 })}>
           <input
             className="w-1/2 p-2.5 border-b border-b-neutral-10 text-primary placeholder:neutral-80 outline-none"
             type="number"
@@ -179,12 +182,9 @@ export default function Sidebar({ type }: Props) {
       </article>
 
       {isPet && (
-        <article className="flex flex-col items-start w-full mt-4 pb-4 border-b border-neutral-10">
-          <h2 className="mb-2.5 text-base font-bold">Breed</h2>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="small"
-          >
+        <article className={containerCheckboxes()}>
+          <h2 className={subtitle()}>Breed</h2>
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="small">
             <input
               id="small"
               type="checkbox"
@@ -192,10 +192,7 @@ export default function Sidebar({ type }: Props) {
             />
             Small
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5 mb-2"
-            htmlFor="medium"
-          >
+          <label className={labelCheckbox({ mb: 2 })} htmlFor="medium">
             <input
               id="medium"
               type="checkbox"
@@ -203,10 +200,7 @@ export default function Sidebar({ type }: Props) {
             />
             Medium
           </label>
-          <label
-            className="flex flex-row items-center gap-x-2.5"
-            htmlFor="large"
-          >
+          <label className={labelCheckbox()} htmlFor="large">
             <input
               id="large"
               type="checkbox"

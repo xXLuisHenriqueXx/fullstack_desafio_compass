@@ -1,4 +1,6 @@
+import { tv } from "tailwind-variants";
 import { ChevronDown } from "lucide-react";
+
 import PageNavigator from "./PageNavigator";
 import List from "../../../Common/List";
 import { IProduct } from "../../../../common/interfaces/Product";
@@ -9,6 +11,18 @@ interface Props {
   total: number;
 }
 
+const card = tv({
+  slots: {
+    containerMain: "flex flex-col w-full",
+    containerHeader: "flex flex-row items-end justify-between w-full mb-9",
+    containerText: "flex flex-row items-end gap-x-3.5",
+    title: "text-2xl font-bold text-primary",
+    text: "text-sm font-medium text-neutral-60",
+  },
+});
+
+const { containerMain, containerHeader, containerText, title, text } = card();
+
 export default function ProductsSection({ name, data, total }: Props) {
   let totalPages = Math.floor(total / 15);
   if (totalPages === 0) totalPages = 1;
@@ -17,11 +31,11 @@ export default function ProductsSection({ name, data, total }: Props) {
     name === "Pet" ? `${total} puppies` : `${total} products`;
 
   return (
-    <section className="flex flex-col w-full">
-      <header className="flex flex-row items-end justify-between w-full mb-9">
-        <div className="flex flex-row items-end gap-x-3.5">
-          <h2 className="text-2xl font-bold text-primary">{name}</h2>
-          <p className="text-sm font-medium text-neutral-60">{countMessage}</p>
+    <section className={containerMain()}>
+      <header className={containerHeader()}>
+        <div className={containerText()}>
+          <h2 className={title()}>{name}</h2>
+          <p className={text()}>{countMessage}</p>
         </div>
 
         <button className="flex flex-row items-center gap-x-2 px-5 py-1.5 border-2 border-neutral-20 hover:bg-neutral-20 text-neutral-20 hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
