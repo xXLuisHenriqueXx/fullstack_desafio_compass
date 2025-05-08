@@ -4,8 +4,9 @@ import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import List from "../../Common/List";
-import { IProduct } from "../../../common/interfaces/Product";
+import Button from "../../Common/Button";
 import { productsService } from "../../../services/ProductsService";
+import { IProduct } from "../../../common/interfaces/Product";
 import { EnumProductType } from "../../../common/enum/ProductType";
 
 const card = tv({
@@ -50,13 +51,17 @@ export default function Pets() {
           <h2 className={title()}>Take a look at some of our pets</h2>
         </div>
 
-        <button
-          onClick={navigateToCategory}
-          className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer"
+        <Button
+          flex="yes"
+          padding="xs"
+          gap="xs"
+          border="primary"
+          text="smPrimaryMedium"
+          action={navigateToCategory}
         >
-          <p>View more</p>
+          View more
           <ChevronRight size={16} />
-        </button>
+        </Button>
       </header>
 
       <List numCols={4} data={pets} />

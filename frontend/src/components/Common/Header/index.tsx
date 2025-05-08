@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import { tv } from "tailwind-variants";
 import { ChevronDown, Search, Star } from "lucide-react";
 
+import Button from "../Button";
 import LogoMonito from "@/assets/logo_monito.svg";
 
 interface NavDataProps {
@@ -92,9 +93,9 @@ export default function Header() {
           />
         </label>
 
-        <button className="px-7 py-3.5 bg-primary hover:bg-state-blue rounded-full text-base font-bold text-neutral hover:text-primary transition-all duration-300 cursor-pointer outline-none">
+        <Button padding="sm" background="primary" text="baseNeutralBold">
           Join the community
-        </button>
+        </Button>
 
         <article className={containerCurrency()}>
           <div className={containerStar()}>

@@ -3,6 +3,7 @@ import { MessageSquareMore } from "lucide-react";
 
 import Pet from "./Pet";
 import Product from "./Product";
+import Button from "../../../Common/Button";
 import { IProduct } from "../../../../common/interfaces/Product";
 import { EnumProductType } from "../../../../common/enum/ProductType";
 
@@ -57,13 +58,20 @@ export default function Info({ data }: Props) {
       </div>
 
       <div className={containerButtons()}>
-        <button className="px-7 py-3 bg-primary hover:bg-state-blue text-base font-bold text-neutral hover:text-primary rounded-full transition-all duration-300 cursor-pointer">
+        <Button padding="xs" background="primary" text="baseNeutralBold">
           Contact us
-        </button>
-        <button className="flex flex-row items-center gap-x-2.5 px-7 py-3 border-2 border-primary-80 hover:bg-primary-80 text-base font-bold text-primary hover:text-neutral rounded-full transition-all duration-300 cursor-pointer">
+        </Button>
+
+        <Button
+          flex="yes"
+          padding="xs"
+          gap="sm"
+          border="primary80"
+          text="basePrimaryBold"
+        >
           <MessageSquareMore size={24} />
           Chat with Monito
-        </button>
+        </Button>
       </div>
 
       {isPet ? <Pet data={data} /> : <Product data={data} />}

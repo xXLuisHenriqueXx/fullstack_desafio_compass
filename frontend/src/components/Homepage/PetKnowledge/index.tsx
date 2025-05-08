@@ -2,6 +2,7 @@ import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import PetKnowledgeList from "./PetKnowledgeList";
+import Button from "../../Common/Button";
 
 const card = tv({
   slots: {
@@ -23,10 +24,16 @@ export default function PetKnowledge() {
           <h2 className={title()}>Useful pet knowledge</h2>
         </div>
 
-        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
-          <p>View more</p>
+        <Button
+          flex="yes"
+          padding="xs"
+          gap="xs"
+          border="primary"
+          text="smPrimaryMedium"
+        >
+          View more
           <ChevronRight size={16} />
-        </button>
+        </Button>
       </header>
 
       <PetKnowledgeList />

@@ -4,9 +4,10 @@ import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import List from "../../Common/List";
+import Button from "../../Common/Button";
+import { productsService } from "../../../services/ProductsService";
 import { IProduct } from "../../../common/interfaces/Product";
 import { EnumProductType } from "../../../common/enum/ProductType";
-import { productsService } from "../../../services/ProductsService";
 
 const card = tv({
   slots: {
@@ -52,13 +53,17 @@ export default function Products() {
           <h2 className={title()}>Our Products</h2>
         </div>
 
-        <button
-          className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer"
-          onClick={navigateToCategory}
+        <Button
+          flex="yes"
+          padding="xs"
+          gap="xs"
+          border="primary"
+          text="smPrimaryMedium"
+          action={navigateToCategory}
         >
-          <p>View more</p>
+          View more
           <ChevronRight size={16} />
-        </button>
+        </Button>
       </header>
 
       <List numCols={4} data={products} />

@@ -1,6 +1,8 @@
 import { tv } from "tailwind-variants";
 import { CirclePlay } from "lucide-react";
 
+import Button from "../../Common/Button";
+
 const card = tv({
   slots: {
     containerMain:
@@ -36,13 +38,20 @@ export default function CategoryBanner() {
         </p>
 
         <div className={containerButtons()}>
-          <button className="flex flex-row items-center gap-x-2 px-7 py-3.5 border-2 border-neutral hover:bg-neutral text-neutral hover:text-primary font-medium text-base rounded-full transition-all duration-300 cursor-pointer">
+          <Button
+            flex="yes"
+            padding="sm"
+            gap="xs"
+            border="neutral"
+            text="baseNeutralMedium"
+          >
             View Intro
             <CirclePlay size={20} />
-          </button>
-          <button className="px-7 py-3.5 bg-neutral hover:bg-state-blue text-primary hover:text-neutral font-medium text-base rounded-full transition-all duration-300 cursor-pointer">
+          </Button>
+
+          <Button padding="sm" background="neutral" text="basePrimaryMedium">
             Explore Now
-          </button>
+          </Button>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
+import Button from "../../Common/Button";
 import ShebaLogo from "@/assets/sheba_logo.svg";
 import WhiskasLogo from "@/assets/whiskas_logo.svg";
 import BakersLogo from "@/assets/bakers_logo.svg";
@@ -83,10 +84,16 @@ export default function Sellers() {
           <span className={highlightText()}>Pet Sellers</span>
         </h2>
 
-        <button className="flex flex-row items-center gap-x-2 px-7 py-3 border-2 border-primary hover:bg-primary text-primary hover:text-neutral font-medium text-sm rounded-full transition-all duration-300 cursor-pointer">
-          <p>View all our sellers</p>
+        <Button
+          flex="yes"
+          padding="xs"
+          gap="xs"
+          border="primary"
+          text="smPrimaryMedium"
+        >
+          View all our sellers
           <ChevronRight size={16} />
-        </button>
+        </Button>
       </header>
 
       <ul className={containerHeaderUl({ type: "ul" })}>
