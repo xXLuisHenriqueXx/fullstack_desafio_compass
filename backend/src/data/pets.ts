@@ -1,5 +1,5 @@
-import { ProductType } from "src/common/enum/ProductType.enum";
-import { CreateProductDTO } from "src/products/dtos/create-product.dto";
+import { ProductType } from "../common/enum/ProductType.enum";
+import { CreateProductDTO } from "../products/dtos/create-product.dto";
 
 export const petsData: Partial<CreateProductDTO>[] = [
   {

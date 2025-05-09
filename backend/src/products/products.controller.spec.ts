@@ -35,58 +35,67 @@ describe("Products Controller", () => {
 
   describe("Get All Tests", () => {
     it("should return a array of products when find them", async () => {
-      const mockProducts = [
-        {
-          id: 1,
-          sku: 101,
-          name: "Teste de pet 2",
-          price: 100,
-          gender: "male",
-          age: "2 months",
-          color: ["Black"],
-          vaccinated: true,
-          dewormed: false,
-          certified: "MKA",
-          microchip: true,
-          location: "Brazil",
-          addInfo: [
-            "Pure breed Shih Tzu.",
-            "Good body structure.",
-            "With MKA cert and Microchip.",
-            "Father from champion lineage.",
-          ],
-          images: [
-            "https://www.daxia.com.br/ptbr/wp-content/uploads/2021/05/iStock-1271494334-750x325.jpg",
-          ],
-          gift: "One Dollar",
-          type: "PET",
-        },
-        {
-          id: 2,
-          sku: 101,
-          name: "Teste de pet 2",
-          price: 100,
-          gender: "male",
-          age: "2 months",
-          color: ["Black"],
-          vaccinated: true,
-          dewormed: false,
-          certified: "MKA",
-          microchip: true,
-          location: "Brazil",
-          addInfo: [
-            "Pure breed Shih Tzu.",
-            "Good body structure.",
-            "With MKA cert and Microchip.",
-            "Father from champion lineage.",
-          ],
-          images: [
-            "https://www.daxia.com.br/ptbr/wp-content/uploads/2021/05/iStock-1271494334-750x325.jpg",
-          ],
-          gift: "One Dollar",
-          type: "PRODUCT",
-        },
-      ];
+      const mockProducts = {
+        items: [
+          {
+            id: 1,
+            sku: 101,
+            name: "Teste de pet 2",
+            price: 100,
+            gender: "male",
+            age: "2 months",
+            color: ["Black"],
+            vaccinated: true,
+            dewormed: false,
+            certified: "MKA",
+            microchip: true,
+            location: "Brazil",
+            addInfo: [
+              "Pure breed Shih Tzu.",
+              "Good body structure.",
+              "With MKA cert and Microchip.",
+              "Father from champion lineage.",
+            ],
+            images: [
+              "https://www.daxia.com.br/ptbr/wp-content/uploads/2021/05/iStock-1271494334-750x325.jpg",
+            ],
+            gift: "One Dollar",
+            type: ProductType.PET,
+            size: "medium",
+            category: "pet",
+            createdDate: new Date(),
+          },
+          {
+            id: 2,
+            sku: 101,
+            name: "Teste de pet 2",
+            price: 100,
+            gender: "male",
+            age: "2 months",
+            color: ["Black"],
+            vaccinated: true,
+            dewormed: false,
+            certified: "MKA",
+            microchip: true,
+            location: "Brazil",
+            addInfo: [
+              "Pure breed Shih Tzu.",
+              "Good body structure.",
+              "With MKA cert and Microchip.",
+              "Father from champion lineage.",
+            ],
+            images: [
+              "https://www.daxia.com.br/ptbr/wp-content/uploads/2021/05/iStock-1271494334-750x325.jpg",
+            ],
+            gift: "One Dollar",
+            type: ProductType.PRODUCT,
+            size: "medium",
+            category: "pet",
+            createdDate: new Date(),
+          },
+        ],
+        total: 2,
+      };
 
       jest.spyOn(service, "getAllProducts").mockResolvedValue(mockProducts);
 
@@ -96,7 +105,7 @@ describe("Products Controller", () => {
         type: undefined,
         gender: [],
         color: [],
-        breed: [],
+        size: [],
         minPrice: undefined,
         maxPrice: undefined,
       };
@@ -133,10 +142,13 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
       jest.spyOn(service, "getProductById").mockResolvedValue(mockProduct);
 
-      const result = await controller.getProductById("1");
+      const result = await controller.getProductById(1);
 
       expect(result).toEqual(mockProduct);
       expect(service.getProductById).toHaveBeenCalledWith(1);
@@ -145,7 +157,7 @@ describe("Products Controller", () => {
     it("should return a NotFoundExeception when not find a product", async () => {
       jest.spyOn(service, "getProductById").mockResolvedValue(null);
 
-      await expect(controller.getProductById("1")).rejects.toThrow(
+      await expect(controller.getProductById(1)).rejects.toThrow(
         "Product not found"
       );
       expect(service.getProductById).toHaveBeenCalledWith(1);
@@ -178,7 +190,11 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
+
       const createdDTO = {
         sku: 101,
         name: "Teste de pet",
@@ -202,6 +218,9 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: ProductType.PET,
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
       jest.spyOn(service, "createProduct").mockResolvedValue(mockProduct);
 
@@ -238,7 +257,11 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
+
       const updatedDTO = {
         sku: 101,
         name: "Teste de pet",
@@ -262,10 +285,13 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
       jest.spyOn(service, "updateProduct").mockResolvedValue(mockProduct);
 
-      const result = await controller.updateProduct("1", updatedDTO);
+      const result = await controller.updateProduct(1, updatedDTO);
 
       expect(result).toEqual(mockProduct);
       expect(service.updateProduct).toHaveBeenCalledWith(1, updatedDTO);
@@ -295,12 +321,15 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
       jest
         .spyOn(service, "updateProduct")
         .mockRejectedValue(new Error("Product not found"));
 
-      await expect(controller.updateProduct("1", updatedDTO)).rejects.toThrow(
+      await expect(controller.updateProduct(1, updatedDTO)).rejects.toThrow(
         "Product not found"
       );
       expect(service.updateProduct).toHaveBeenCalledWith(1, updatedDTO);
@@ -333,11 +362,14 @@ describe("Products Controller", () => {
         ],
         gift: "One Dollar",
         type: "PET",
+        size: "medium",
+        category: "pet",
+        createdDate: new Date(),
       };
 
       jest.spyOn(service, "deleteProduct").mockResolvedValue(mockProduct);
 
-      const result = await controller.deleteProduct("1");
+      const result = await controller.deleteProduct(1);
 
       expect(result).toEqual(mockProduct);
       expect(service.deleteProduct).toHaveBeenCalledWith(1);
@@ -348,7 +380,7 @@ describe("Products Controller", () => {
         .spyOn(service, "deleteProduct")
         .mockRejectedValue(new Error("Product not found"));
 
-      await expect(controller.deleteProduct("1")).rejects.toThrow(
+      await expect(controller.deleteProduct(1)).rejects.toThrow(
         "Product not found"
       );
       expect(service.deleteProduct).toHaveBeenCalledWith(1);

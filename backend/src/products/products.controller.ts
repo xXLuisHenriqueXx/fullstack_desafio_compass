@@ -5,18 +5,18 @@ import {
   Get,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
 } from "@nestjs/common";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+
 import { CreateProductDTO } from "./dtos/create-product.dto";
 import { ProductsService } from "./products.service";
 import { GetAllProductsDTO } from "./dtos/get-all-products.dto";
 import { UpdateProductDTO } from "./dtos/update-product.dto";
-import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { ProductsDTO } from "./dtos/products.dto";
-import { petsData } from "../data/pets";
-import { productsData } from "src/data/products";
 import { GetAllProductsResponseDTO } from "./dtos/get-all-products-response.dto";
 
 @Controller("products")
@@ -51,14 +51,16 @@ export class ProductsController {
     status: 404,
     description: "Product not found",
   })
-  async getProductById(@Param("id") id: string): Promise<ProductsDTO> {
-    const product = await this.productsService.getProductById(parseInt(id));
+  async getProductById(
+    @Param("id", ParseIntPipe) id: number
+  ): Promise<ProductsDTO> {
+    const product = await this.productsService.getProductById(id);
     if (!product) throw new NotFoundException("Product not found");
 
     return product;
   }
 
-  @Post("create")
+  @Post()
   @ApiOperation({
     summary: "Create a product",
   })
@@ -73,7 +75,7 @@ export class ProductsController {
     return product;
   }
 
-  @Post("create-many")
+  @Post("bulk")
   @ApiOperation({
     summary: "Create multiple products",
   })
@@ -91,30 +93,6 @@ export class ProductsController {
     return products;
   }
 
-  @Post("seed/pets")
-  @ApiOperation({
-    summary: "Seed the database with pets informations",
-  })
-  @ApiResponse({
-    status: 201,
-    description: "No returns",
-  })
-  async seedPets(): Promise<void> {
-    await this.productsService.createManyProducts(petsData as any);
-  }
-
-  @Post("seed/products")
-  @ApiOperation({
-    summary: "Seed the database with products informations",
-  })
-  @ApiResponse({
-    status: 201,
-    description: "No returns",
-  })
-  async seedProducts(): Promise<void> {
-    await this.productsService.createManyProducts(productsData as any);
-  }
-
   @Patch(":id")
   @ApiOperation({
     summary: "Update the info from a product who has the provided id",
@@ -125,10 +103,10 @@ export class ProductsController {
     type: ProductsDTO,
   })
   updateProduct(
-    @Param("id") id: string,
+    @Param("id", ParseIntPipe) id: number,
     @Body() body: UpdateProductDTO
   ): Promise<ProductsDTO> {
-    return this.productsService.updateProduct(parseInt(id), body);
+    return this.productsService.updateProduct(id, body);
   }
 
   @Delete(":id")
@@ -140,7 +118,7 @@ export class ProductsController {
     description: "Return the deleted product",
     type: ProductsDTO,
   })
-  deleteProduct(@Param("id") id: string): Promise<ProductsDTO> {
-    return this.productsService.deleteProduct(parseInt(id));
+  deleteProduct(@Param("id", ParseIntPipe) id: number): Promise<ProductsDTO> {
+    return this.productsService.deleteProduct(id);
   }
 }

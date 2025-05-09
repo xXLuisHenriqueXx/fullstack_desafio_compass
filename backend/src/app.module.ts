@@ -8,6 +8,9 @@ import { APP_PIPE } from '@nestjs/core';
 import { ProductsController } from './products/products.controller';
 import { ProductsService } from './products/products.service';
 import { ProductsModule } from './products/products.module';
+import { SeedController } from './seed/seed.controller';
+import { SeedService } from './seed/seed.service';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -27,8 +30,9 @@ import { ProductsModule } from './products/products.module';
     }),
     TypeOrmModule.forFeature([Products]),
     ProductsModule,
+    SeedModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, SeedController],
+  providers: [AppService, SeedService],
 })
 export class AppModule {}

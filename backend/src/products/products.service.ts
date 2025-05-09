@@ -1,7 +1,9 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Products } from "./products.entity";
 import { Repository } from "typeorm";
+
+import { Products } from "./products.entity";
+
 import { CreateProductDTO } from "./dtos/create-product.dto";
 import { GetAllProductsDTO } from "./dtos/get-all-products.dto";
 import { GetAllProductsResponseDTO } from "./dtos/get-all-products-response.dto";
@@ -52,7 +54,7 @@ export class ProductsService {
     return { items, total };
   }
 
-  getProductById(id: number): Promise<Products | null> {
+  getProductById(id: number): Promise<ProductsDTO | null> {
     return this.productsRepository.findOneBy({ id });
   }
 
@@ -64,7 +66,7 @@ export class ProductsService {
 
   createManyProducts(
     createProductDTOs: CreateProductDTO[]
-  ): Promise<Products[]> {
+  ): Promise<ProductsDTO[]> {
     const products = this.productsRepository.create(createProductDTOs);
 
     return this.productsRepository.save(products);

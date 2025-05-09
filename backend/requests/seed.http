@@ -1,7 +1,7 @@
 # PETS
-POST http://localhost:3000/products/seed/pets
+POST http://localhost:3000/seed/pets
 
 ###
 
 # PRODUCTS
-POST http://localhost:3000/products/seed/products
+POST http://localhost:3000/seed/products
