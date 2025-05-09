@@ -5,7 +5,7 @@ import Header from "../Header";
 
 interface Props {
   children: ReactNode;
-  page: "homepage" | "another" | undefined;
+  page?: "homepage" | "another";
 }
 
 const container = tv({
@@ -21,7 +21,7 @@ const container = tv({
   },
 });
 
-export default function Container({ children, page }: Props) {
+export default function Container({ children, page = "another" }: Props) {
   return (
     <main
       className={container({

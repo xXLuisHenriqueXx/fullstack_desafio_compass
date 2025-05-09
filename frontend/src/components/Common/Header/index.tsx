@@ -3,15 +3,12 @@ import { tv } from "tailwind-variants";
 import { ChevronDown, Search, Star } from "lucide-react";
 
 import Button from "../Button";
+
+import { navData } from "../../../common/data/Header";
+
 import LogoMonito from "@/assets/logo_monito.svg";
 
-interface NavDataProps {
-  id: number;
-  name: string;
-  url: string;
-}
-
-const card = tv({
+const headerStyles = tv({
   slots: {
     containerMain:
       "fixed flex flex-row justify-between items-center gap-x-9 w-full px-32 py-7 z-99",
@@ -41,30 +38,7 @@ const {
   textNav,
   textCurrency,
   input,
-} = card();
-
-const navData: NavDataProps[] = [
-  {
-    id: 1,
-    name: "Home",
-    url: "/",
-  },
-  {
-    id: 2,
-    name: "Category",
-    url: "/category/ALL",
-  },
-  {
-    id: 3,
-    name: "About",
-    url: "/",
-  },
-  {
-    id: 4,
-    name: "Contact",
-    url: "/",
-  },
-];
+} = headerStyles();
 
 export default function Header() {
   return (
@@ -74,9 +48,11 @@ export default function Header() {
 
         <ul className={containerNavUl()}>
           {navData.map((link) => (
-            <NavLink key={link.id} to={link.url} className={textNav()}>
-              {link.name}
-            </NavLink>
+            <li key={link.id}>
+              <NavLink to={link.url} className={textNav()}>
+                {link.name}
+              </NavLink>
+            </li>
           ))}
         </ul>
       </nav>
@@ -90,10 +66,16 @@ export default function Header() {
             className={input()}
             type="text"
             placeholder="Search something here!"
+            aria-label="Search"
           />
         </label>
 
-        <Button padding="sm" background="primary" text="baseNeutralBold">
+        <Button
+          padding="sm"
+          background="primary"
+          text="baseNeutralBold"
+          label="Join in our community"
+        >
           Join the community
         </Button>
 

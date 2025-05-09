@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { tv } from "tailwind-variants";
 
 import List from "../../Common/List";
+import Loader from "../../Common/Loader";
+
 import { productsService } from "../../../services/ProductsService";
+
 import { EnumProductType } from "../../../common/enum/ProductType";
 import { IProduct } from "../../../common/interfaces/Product";
 
@@ -10,7 +13,7 @@ interface Props {
   type: EnumProductType | undefined;
 }
 
-const card = tv({
+const moreStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full px-32 mb-20",
     containerHeader: "flex flex-row items-end justify-between w-full mb-9",
@@ -19,21 +22,30 @@ const card = tv({
   },
 });
 
-const { containerMain, containerHeader, title, subtitle } = card();
+const { containerMain, containerHeader, title, subtitle } = moreStyles();
 
 export default function More({ type }: Props) {
   const isPet = type === EnumProductType.PET;
   const [items, setItems] = useState<IProduct[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const params = {
-      limit: 4,
-      type: type,
-    };
+    setIsLoading(true);
 
-    productsService.getAll(params).then((response) => {
-      setItems(response.data.items);
-    });
+    try {
+      const params = {
+        limit: 4,
+        type: type,
+      };
+
+      productsService.getAll(params).then((response) => {
+        setItems(response.data.items);
+      });
+    } catch (error: any) {
+      console.error("Failed to fetch items", error);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
@@ -47,7 +59,7 @@ export default function More({ type }: Props) {
         </div>
       </header>
 
-      <List numCols={4} data={items} />
+      {isLoading ? <Loader /> : <List numCols={4} data={items} />}
     </section>
   );
 }

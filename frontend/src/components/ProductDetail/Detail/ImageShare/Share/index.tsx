@@ -7,10 +7,11 @@ import {
   Twitter,
   Youtube,
 } from "../../../../Common/Icons";
+
 import DogHeartIcon from "@/assets/dog_heart_icon.svg";
 import CatDogIcon from "@/assets/cat_dog_icon.svg";
 
-const card = tv({
+const shareStyles = tv({
   slots: {
     containerInfoMain:
       "flex flex-row items-center justify-between max-w-full px-3 py-2 bg-secondary-40 rounded-lg",
@@ -30,7 +31,7 @@ const card = tv({
   },
 });
 
-const { containerInfoMain, containerInfo, text, icon } = card();
+const { containerInfoMain, containerInfo, text, icon } = shareStyles();
 
 export default function Share() {
   return (

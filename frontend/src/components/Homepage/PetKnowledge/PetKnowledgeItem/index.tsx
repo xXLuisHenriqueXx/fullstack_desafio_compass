@@ -1,11 +1,11 @@
 import { tv } from "tailwind-variants";
 
-import { PetKnowDataProps } from "../PetKnowledgeList";
+import { PetKnowDataProps } from "../../../../common/data/PetKnowledge";
 
-const card = tv({
+const petKnowledgeItemStyles = tv({
   slots: {
     containerMain:
-      "flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300",
+      "flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300 cursor-pointer",
     containerText: "flex flex-col gap-y-2.5 text-left",
     titles: "text-base font-bold text-neutral-100",
     text: "pb-2 text-sm font-normal text-neutral-80",
@@ -14,17 +14,17 @@ const card = tv({
   },
 });
 
-const { containerMain, containerText, titles, text, tag, images } = card();
+const { containerMain, containerText, titles, text, tag, images } =
+  petKnowledgeItemStyles();
 
 export default function PetKnowledgeItem({
-  id,
   image,
   title,
   description,
 }: PetKnowDataProps) {
   return (
-    <article key={id} className={containerMain()}>
-      <img className={images()} src={image} />
+    <article className={containerMain()}>
+      <img className={images()} src={image} alt={title} />
 
       <div className={containerText()}>
         <p className={tag()}>Pet Knowledge</p>

@@ -3,15 +3,17 @@ import { MessageSquareMore } from "lucide-react";
 
 import Pet from "./Pet";
 import Product from "./Product";
+
 import Button from "../../../Common/Button";
-import { IProduct } from "../../../../common/interfaces/Product";
+
 import { EnumProductType } from "../../../../common/enum/ProductType";
+import { IProduct } from "../../../../common/interfaces/Product";
 
 interface Props {
   data: IProduct | undefined;
 }
 
-const card = tv({
+const infoStyles = tv({
   slots: {
     containerMain: "flex flex-col items-start w-full gap-y-5 max-w-1/2",
     containerPath:
@@ -34,7 +36,7 @@ const {
   title,
   subtitle,
   text,
-} = card();
+} = infoStyles();
 
 export default function Info({ data }: Props) {
   const isPet = data?.type === EnumProductType.PET;
@@ -58,7 +60,12 @@ export default function Info({ data }: Props) {
       </div>
 
       <div className={containerButtons()}>
-        <Button padding="xs" background="primary" text="baseNeutralBold">
+        <Button
+          padding="xs"
+          background="primary"
+          text="baseNeutralBold"
+          label="Talk with seller"
+        >
           Contact us
         </Button>
 
@@ -68,6 +75,7 @@ export default function Info({ data }: Props) {
           gap="sm"
           border="primary80"
           text="basePrimaryBold"
+          label="Talk with us"
         >
           <MessageSquareMore size={24} />
           Chat with Monito

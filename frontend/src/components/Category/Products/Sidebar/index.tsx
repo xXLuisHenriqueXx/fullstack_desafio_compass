@@ -1,12 +1,14 @@
 import { tv } from "tailwind-variants";
-import { EnumProductType } from "../../../../common/enum/ProductType";
+
 import { useProductsStore } from "../../../../states/ProductsState";
+
+import { EnumProductType } from "../../../../common/enum/ProductType";
 
 interface Props {
   type: EnumProductType | undefined;
 }
 
-const card = tv({
+const sidebarStyles = tv({
   slots: {
     containerMain:
       "flex flex-col items-start w-1/5 text-sm font-medium text-neutral-100 accent-primary",
@@ -27,7 +29,7 @@ const card = tv({
 });
 
 const { containerMain, containerCheckboxes, labelCheckbox, title, subtitle } =
-  card();
+  sidebarStyles();
 
 export default function Sidebar({ type }: Props) {
   const { filters, setFilters } = useProductsStore();
@@ -82,6 +84,7 @@ export default function Sidebar({ type }: Props) {
             <input
               id="male"
               type="checkbox"
+              checked={filters.gender?.includes("male") || false}
               onChange={() => handleGenderChange("male")}
             />
             Male
@@ -91,6 +94,7 @@ export default function Sidebar({ type }: Props) {
             <input
               id="female"
               type="checkbox"
+              checked={filters.gender?.includes("female") || false}
               onChange={() => handleGenderChange("female")}
             />
             Female
@@ -105,33 +109,40 @@ export default function Sidebar({ type }: Props) {
             <input
               id="red"
               type="checkbox"
+              checked={filters.color?.includes("red") || false}
               onChange={() => handleColorChange("red")}
             />
             <div className="w-4 aspect-square bg-state-red rounded-full" />
             Red
           </label>
+
           <label className={labelCheckbox({ mb: 2 })} htmlFor="apricot">
             <input
               id="apricot"
               type="checkbox"
+              checked={filters.color?.includes("apricot") || false}
               onChange={() => handleColorChange("apricot")}
             />
             <div className="w-4 aspect-square bg-state-apricot rounded-full" />
             Apricot
           </label>
+
           <label className={labelCheckbox({ mb: 2 })} htmlFor="black">
             <input
               id="black"
               type="checkbox"
+              checked={filters.color?.includes("black") || false}
               onChange={() => handleColorChange("black")}
             />
             <div className="w-4 aspect-square bg-black rounded-full" />
             Black
           </label>
+
           <label className={labelCheckbox({ mb: 2 })} htmlFor="black-white">
             <input
               id="black-white"
               type="checkbox"
+              checked={filters.color?.includes("black_white") || false}
               onChange={() => handleColorChange("black_white")}
             />
             <div
@@ -140,21 +151,25 @@ export default function Sidebar({ type }: Props) {
                 background: "linear-gradient(to right, black 50%, #d3d3d3 50%)",
               }}
             />
-            {`Black & white`}
+            {"Black & white"}
           </label>
+
           <label className={labelCheckbox({ mb: 2 })} htmlFor="silver">
             <input
               id="silver"
               type="checkbox"
+              checked={filters.color?.includes("silver") || false}
               onChange={() => handleColorChange("silver")}
             />
             <div className="w-4 aspect-square bg-state-silver rounded-full" />
             Silver
           </label>
+
           <label className={labelCheckbox()} htmlFor="tan">
             <input
               id="tan"
               type="checkbox"
+              checked={filters.color?.includes("tan") || false}
               onChange={() => handleColorChange("tan")}
             />
             <div className="w-4 aspect-square bg-state-tan rounded-full" />
@@ -170,13 +185,19 @@ export default function Sidebar({ type }: Props) {
             className="w-1/2 p-2.5 border-b border-b-neutral-10 text-primary placeholder:neutral-80 outline-none"
             type="number"
             placeholder="Min"
-            onChange={(e) => handleMinChange(parseFloat(e.target.value))}
+            onChange={(e) => {
+              const val = parseFloat(e.target.value);
+              handleMinChange(isNaN(val) ? 0 : val);
+            }}
           />
           <input
             className="w-1/2 p-2.5 border-b border-b-neutral-10 text-primary placeholder:neutral-80 outline-none"
             type="number"
             placeholder="Max"
-            onChange={(e) => handleMaxChange(parseFloat(e.target.value))}
+            onChange={(e) => {
+              const val = parseFloat(e.target.value);
+              handleMaxChange(isNaN(val) ? 0 : val);
+            }}
           />
         </div>
       </article>
@@ -188,6 +209,7 @@ export default function Sidebar({ type }: Props) {
             <input
               id="small"
               type="checkbox"
+              checked={filters.size?.includes("small")}
               onChange={() => handleBreedChange("small")}
             />
             Small
@@ -196,6 +218,7 @@ export default function Sidebar({ type }: Props) {
             <input
               id="medium"
               type="checkbox"
+              checked={filters.size?.includes("medium")}
               onChange={() => handleBreedChange("medium")}
             />
             Medium
@@ -204,6 +227,7 @@ export default function Sidebar({ type }: Props) {
             <input
               id="large"
               type="checkbox"
+              checked={filters.size?.includes("large")}
               onChange={() => handleBreedChange("large")}
             />
             Large

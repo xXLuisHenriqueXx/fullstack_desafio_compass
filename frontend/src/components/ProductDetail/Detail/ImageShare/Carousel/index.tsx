@@ -6,7 +6,7 @@ interface Props {
   images: string[] | undefined;
 }
 
-const card = tv({
+const carouselStyles = tv({
   slots: {
     containerMain: "flex flex-col gap-y-3 max-w-full mb-2.5",
     containerImage: "relative flex flex-row items-center",
@@ -39,10 +39,10 @@ const card = tv({
 });
 
 const { containerMain, containerImage, containerNav, image, imageNav, button } =
-  card();
+  carouselStyles();
 
 export default function Carousel({ images }: Props) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState<number>(0);
 
   if (!images || images.length === 0) return null;
 
@@ -55,13 +55,26 @@ export default function Carousel({ images }: Props) {
   return (
     <div className={containerMain()}>
       <div className={containerImage()}>
-        <img className={image()} src={images[current]} loading="lazy" />
+        <img
+          className={image()}
+          src={images[current]}
+          alt={`Image ${current + 1} of product`}
+          loading="lazy"
+        />
 
-        <button className={button({ side: "left" })} onClick={prev}>
+        <button
+          className={button({ side: "left" })}
+          aria-label="Previous image"
+          onClick={prev}
+        >
           <ChevronLeft size={24} />
         </button>
 
-        <button className={button({ side: "right" })} onClick={next}>
+        <button
+          className={button({ side: "right" })}
+          aria-label="Next image"
+          onClick={next}
+        >
           <ChevronRight size={24} />
         </button>
       </div>
@@ -78,6 +91,7 @@ export default function Carousel({ images }: Props) {
             key={index}
             className={imageNav({ active: index === current ? "yes" : "no" })}
             src={item}
+            alt={`Image ${index + 1} of product`}
             loading="lazy"
             onClick={() => goTo(index)}
           />

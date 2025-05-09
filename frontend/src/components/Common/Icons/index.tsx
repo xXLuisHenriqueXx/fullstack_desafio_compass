@@ -2,6 +2,7 @@ function Facebook({ className }: { className: string }) {
   return (
     <svg
       className={className}
+      aria-label="Facebook"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -24,6 +25,7 @@ function Twitter({ className }: { className: string }) {
   return (
     <svg
       className={className}
+      aria-label="Twitter"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -46,6 +48,7 @@ function Instagram({ className }: { className: string }) {
   return (
     <svg
       className={className}
+      aria-label="Instagram"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -70,6 +73,7 @@ function Youtube({ className }: { className: string }) {
   return (
     <svg
       className={className}
+      aria-label="Youtube"
       width="24"
       height="24"
       viewBox="0 0 24 24"

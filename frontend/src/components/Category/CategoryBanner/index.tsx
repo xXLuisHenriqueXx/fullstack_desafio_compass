@@ -3,7 +3,7 @@ import { CirclePlay } from "lucide-react";
 
 import Button from "../../Common/Button";
 
-const card = tv({
+const categoryBannerStyles = tv({
   slots: {
     containerMain:
       "relative flex flex-col justify-center w-[calc(100% - 256px)] h-[378px] mx-32 bg-category-banner bg-cover bg-no-repeat bg-center rounded-[20px]",
@@ -23,7 +23,7 @@ const {
   title,
   subtitle,
   text,
-} = card();
+} = categoryBannerStyles();
 
 export default function CategoryBanner() {
   return (
@@ -44,12 +44,18 @@ export default function CategoryBanner() {
             gap="xs"
             border="neutral"
             text="baseNeutralMedium"
+            label="Watch introduction video"
           >
             View Intro
             <CirclePlay size={20} />
           </Button>
 
-          <Button padding="sm" background="neutral" text="basePrimaryMedium">
+          <Button
+            padding="sm"
+            background="neutral"
+            text="basePrimaryMedium"
+            label="Explore our content now"
+          >
             Explore Now
           </Button>
         </div>

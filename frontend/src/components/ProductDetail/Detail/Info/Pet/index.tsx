@@ -1,11 +1,12 @@
 import { tv } from "tailwind-variants";
+
 import { IProduct } from "../../../../../common/interfaces/Product";
 
 interface Props {
   data: IProduct | undefined;
 }
 
-const card = tv({
+const petStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full max-w-full",
     containerInfo:
@@ -13,7 +14,7 @@ const card = tv({
   },
 });
 
-const { containerMain, containerInfo } = card();
+const { containerMain, containerInfo } = petStyles();
 
 export default function Pet({ data }: Props) {
   return (

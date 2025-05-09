@@ -3,7 +3,7 @@ import { CirclePlay } from "lucide-react";
 
 import Button from "../../Common/Button";
 
-const card = tv({
+const midBannerStyles = tv({
   slots: {
     containerMain:
       "relative flex flex-col justify-center w-[calc(100% - 256px)] h-[378px] mx-32 bg-mid-banner bg-cover bg-no-repeat bg-center rounded-[20px]",
@@ -23,7 +23,7 @@ const {
   title,
   subtitle,
   text,
-} = card();
+} = midBannerStyles();
 
 export default function MidBanner() {
   return (
@@ -44,12 +44,18 @@ export default function MidBanner() {
             gap="xs"
             border="primary"
             text="basePrimaryMedium"
+            label="Watch introduction video"
           >
             View Intro
             <CirclePlay size={20} />
           </Button>
 
-          <Button padding="sm" background="primary" text="baseNeutralMedium">
+          <Button
+            padding="sm"
+            background="primary"
+            text="baseNeutralMedium"
+            label="Explore our content now"
+          >
             Explore Now
           </Button>
         </div>

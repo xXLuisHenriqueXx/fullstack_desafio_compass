@@ -2,15 +2,16 @@ import { useNavigate } from "react-router";
 import { tv } from "tailwind-variants";
 import { Dot } from "lucide-react";
 
-import { IProduct } from "../../../../common/interfaces/Product";
 import { EnumProductType } from "../../../../common/enum/ProductType";
+import { IProduct } from "../../../../common/interfaces/Product";
+
 import GiftIcon from "../../../../assets/gift_icon.svg";
 
 interface Props {
   data?: IProduct;
 }
 
-const card = tv({
+const itemStyles = tv({
   slots: {
     containerMain:
       "flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300",
@@ -44,7 +45,7 @@ const {
   containerGift,
   highlightText,
   image,
-} = card();
+} = itemStyles();
 
 export default function Item({ data }: Props) {
   const navigate = useNavigate();
@@ -59,7 +60,12 @@ export default function Item({ data }: Props) {
       className={containerMain()}
       onClick={() => navigateToProductDetail(data?.id)}
     >
-      <img className={image()} src={data?.images[0]} loading="lazy" />
+      <img
+        className={image()}
+        src={data?.images[0]}
+        alt="Item image"
+        loading="lazy"
+      />
 
       <div className={containerInfo()}>
         <p>{data?.name}</p>

@@ -1,22 +1,10 @@
-import { ReactNode } from "react";
 import { tv } from "tailwind-variants";
 
-import { Facebook, Twitter, Instagram, Youtube } from "../Icons";
+import { navIconItems, navTextItems } from "../../../common/data/Footer";
+
 import LogoMonito from "@/assets/logo_monito.svg";
 
-interface NavTextItemsProps {
-  id: number;
-  name: string;
-  url: string;
-}
-
-interface NavIconItemsProps {
-  id: number;
-  icon: ReactNode;
-  action: () => void;
-}
-
-const card = tv({
+const footerStyles = tv({
   slots: {
     containerMain:
       "flex flex-col w-full px-32 pt-20 pb-10 bg-secondary-40 rounded-t-[40px]",
@@ -36,7 +24,6 @@ const card = tv({
       "w-3/4 px-7 py-3.5 border border-neutral-40 rounded-lg text-sm font-medium text-primary placeholder:text-neutral-40 outline-none",
     buttonForm:
       "w-1/4 px-7 py-3.5 bg-primary hover:bg-state-blue rounded-[10px] text-base font-medium text-neutral hover:text-primary transition-all duration-300 cursor-pointer",
-    icon: "w-6 h-6 fill-neutral-100 hover:fill-state-blue transition-all duration-300 cursor-pointer",
   },
   variants: {
     hover: {
@@ -71,60 +58,13 @@ const {
   textNav,
   inputForm,
   buttonForm,
-  icon,
-} = card();
-
-const navTextItems: NavTextItemsProps[] = [
-  {
-    id: 1,
-    name: "Home",
-    url: "/",
-  },
-  {
-    id: 2,
-    name: "Category",
-    url: "/category/ALL",
-  },
-  {
-    id: 3,
-    name: "About",
-    url: "/",
-  },
-  {
-    id: 4,
-    name: "Contact",
-    url: "/",
-  },
-];
-
-const navIconItems: NavIconItemsProps[] = [
-  {
-    id: 1,
-    icon: <Facebook className={icon()} />,
-    action: () => {},
-  },
-  {
-    id: 2,
-    icon: <Twitter className={icon()} />,
-    action: () => {},
-  },
-  {
-    id: 3,
-    icon: <Instagram className={icon()} />,
-    action: () => {},
-  },
-  {
-    id: 4,
-    icon: <Youtube className={icon()} />,
-    action: () => {},
-  },
-];
+} = footerStyles();
 
 export default function Footer() {
   return (
     <footer className={containerMain()}>
       <div className={containerTop()}>
-        <form onSubmit={(e) => e.preventDefault()} className={containerForm()}>
+        <form className={containerForm()}>
           <h1 className={titleForm()}>
             Register now so you don't miss our programs
           </h1>
@@ -132,11 +72,16 @@ export default function Footer() {
           <div className={containerInput()}>
             <input
               className={inputForm()}
-              type="text"
+              type="email"
               placeholder="Enter your Email"
+              required
             />
 
-            <button className={buttonForm()} type="submit">
+            <button
+              className={buttonForm()}
+              aria-label="Subscribe newsletter"
+              type="submit"
+            >
               Subscribe Now
             </button>
           </div>

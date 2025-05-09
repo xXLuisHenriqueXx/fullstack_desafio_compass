@@ -6,7 +6,7 @@ interface Props {
   data: IProduct | undefined;
 }
 
-const card = tv({
+const productStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full max-w-full",
     containerInfo:
@@ -14,7 +14,7 @@ const card = tv({
   },
 });
 
-const { containerMain, containerInfo } = card();
+const { containerMain, containerInfo } = productStyles();
 
 export default function Product({ data }: Props) {
   return (

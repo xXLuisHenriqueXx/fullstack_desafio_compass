@@ -2,21 +2,10 @@ import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import Button from "../../Common/Button";
-import ShebaLogo from "@/assets/sheba_logo.svg";
-import WhiskasLogo from "@/assets/whiskas_logo.svg";
-import BakersLogo from "@/assets/bakers_logo.svg";
-import FelixLogo from "@/assets/felix_logo.svg";
-import GoodBoyLogo from "@/assets/good_boy_logo.svg";
-import ButchersLogo from "@/assets/butchers_logo.svg";
-import PedigreeLogo from "@/assets/pedigree_logo.svg";
 
-interface SellerDataProps {
-  id: number;
-  logo: string;
-  alt: string;
-}
+import { sellerData } from "../../../common/data/Sellers";
 
-const card = tv({
+const sellersStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full px-32 py-10",
     containerHeaderUl: "flex flex-row justify-between w-full",
@@ -35,45 +24,8 @@ const card = tv({
   },
 });
 
-const { containerMain, containerHeaderUl, title, highlightText } = card();
-
-const sellerData: SellerDataProps[] = [
-  {
-    id: 1,
-    logo: ShebaLogo,
-    alt: "Sheba",
-  },
-  {
-    id: 2,
-    logo: WhiskasLogo,
-    alt: "Whiskas",
-  },
-  {
-    id: 3,
-    logo: BakersLogo,
-    alt: "Bakers",
-  },
-  {
-    id: 4,
-    logo: FelixLogo,
-    alt: "Felix",
-  },
-  {
-    id: 5,
-    logo: GoodBoyLogo,
-    alt: "GoodBoy",
-  },
-  {
-    id: 6,
-    logo: ButchersLogo,
-    alt: "Butchers",
-  },
-  {
-    id: 7,
-    logo: PedigreeLogo,
-    alt: "Pedigree",
-  },
-];
+const { containerMain, containerHeaderUl, title, highlightText } =
+  sellersStyles();
 
 export default function Sellers() {
   return (
@@ -90,6 +42,7 @@ export default function Sellers() {
           gap="xs"
           border="primary"
           text="smPrimaryMedium"
+          label="View more content"
         >
           View all our sellers
           <ChevronRight size={16} />
@@ -98,7 +51,9 @@ export default function Sellers() {
 
       <ul className={containerHeaderUl({ type: "ul" })}>
         {sellerData.map((item) => (
-          <img key={item.id} src={item.logo} />
+          <li key={item.id}>
+            <img src={item.logo} alt={item.alt} />
+          </li>
         ))}
       </ul>
     </section>

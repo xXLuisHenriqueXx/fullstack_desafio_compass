@@ -5,11 +5,14 @@ import { ChevronRight } from "lucide-react";
 
 import List from "../../Common/List";
 import Button from "../../Common/Button";
-import { productsService } from "../../../services/ProductsService";
-import { IProduct } from "../../../common/interfaces/Product";
-import { EnumProductType } from "../../../common/enum/ProductType";
+import Loader from "../../Common/Loader";
 
-const card = tv({
+import { productsService } from "../../../services/ProductsService";
+
+import { EnumProductType } from "../../../common/enum/ProductType";
+import { IProduct } from "../../../common/interfaces/Product";
+
+const productsStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full px-32",
     containerHeader: "flex flex-row items-end justify-between w-full mb-9",
@@ -18,25 +21,34 @@ const card = tv({
   },
 });
 
-const { containerMain, containerHeader, title, subtitle } = card();
+const { containerMain, containerHeader, title, subtitle } = productsStyles();
 
 export default function Products() {
   const navigate = useNavigate();
-  const [products, setProducts] = useState<IProduct[]>();
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getProducts();
+    fetchProducts();
   }, []);
 
-  const getProducts = async () => {
-    const params = {
-      limit: 8,
-      type: EnumProductType.PRODUCT,
-    };
+  const fetchProducts = () => {
+    setIsLoading(true);
 
-    await productsService.getAll(params).then((response) => {
-      setProducts(response.data.items);
-    });
+    try {
+      const params = {
+        limit: 8,
+        type: EnumProductType.PRODUCT,
+      };
+
+      productsService.getAll(params).then((response) => {
+        setProducts(response.data.items);
+      });
+    } catch (error: any) {
+      console.error("Failed to fetch products", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const navigateToCategory = () => {
@@ -48,7 +60,7 @@ export default function Products() {
       <header className={containerHeader()}>
         <div>
           <h3 className={subtitle()}>
-            Hard to choose right products for your products?
+            Hard to choose right products for your pet?
           </h3>
           <h2 className={title()}>Our Products</h2>
         </div>
@@ -59,6 +71,7 @@ export default function Products() {
           gap="xs"
           border="primary"
           text="smPrimaryMedium"
+          label="View more content"
           action={navigateToCategory}
         >
           View more
@@ -66,7 +79,7 @@ export default function Products() {
         </Button>
       </header>
 
-      <List numCols={4} data={products} />
+      {isLoading ? <Loader /> : <List numCols={4} data={products} />}
     </section>
   );
 }

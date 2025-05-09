@@ -1,6 +1,7 @@
 import { tv } from "tailwind-variants";
 
 import Item from "./Item";
+
 import { IProduct } from "../../../common/interfaces/Product";
 
 interface Props {
@@ -26,11 +27,47 @@ export default function List({ data, numCols }: Props) {
     },
   });
 
+  const notFoundText = tv({
+    slots: {
+      containerText: "py-14",
+      text: "text-2xl font-semibold text-primary-80 text-center",
+    },
+    variants: {
+      colsSpan: {
+        1: {
+          containerText: "col-span-1",
+        },
+        2: {
+          containerText: "col-span-2",
+        },
+        3: {
+          containerText: "col-span-3",
+        },
+        4: {
+          containerText: "col-span-4",
+        },
+        5: {
+          containerText: "col-span-5",
+        },
+        6: {
+          containerText: "col-span-6",
+        },
+      },
+    },
+  });
+  const { containerText, text } = notFoundText();
+
   return (
     <ul className={container({ cols: numCols })}>
-      {data?.map((item) => (
-        <Item data={item} />
-      ))}
+      {data?.length === 0 ? (
+        <div className={containerText({ colsSpan: numCols })}>
+          <p className={text()}>
+            Sorry, seems like we cannot find products for you...
+          </p>
+        </div>
+      ) : (
+        data?.map((item: IProduct) => <Item key={item.id} data={item} />)
+      )}
     </ul>
   );
 }

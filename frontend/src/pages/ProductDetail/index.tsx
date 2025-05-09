@@ -1,30 +1,51 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { IProduct } from "../../common/interfaces/Product";
-import { productsService } from "../../services/ProductsService";
 import Container from "../../components/Common/Container";
+import Footer from "../../components/Common/Footer";
+import Loader from "../../components/Common/Loader";
+
 import Detail from "../../components/ProductDetail/Detail";
 import Costumer from "../../components/ProductDetail/Costumer";
 import More from "../../components/ProductDetail/More";
-import Footer from "../../components/Common/Footer";
+
+import { productsService } from "../../services/ProductsService";
+
+import { IProduct } from "../../common/interfaces/Product";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const [item, setItem] = useState<IProduct>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (id)
-      productsService.getById(parseInt(id)).then((response) => {
-        setItem(response.data);
-      });
-  }, []);
+    setIsLoading(true);
+
+    try {
+      if (id) {
+        productsService.getById(Number(id)).then((response) => {
+          setItem(response.data);
+        });
+      }
+    } catch (error: any) {
+      console.error("Failed to fetch item", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [id]);
+
+  if (isLoading)
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
 
   return (
-    <Container page="another">
+    <Container>
       <Detail data={item} />
       <Costumer />
-      <More type={item?.type} />
+      <More type={item && item.type} />
       <Footer />
     </Container>
   );

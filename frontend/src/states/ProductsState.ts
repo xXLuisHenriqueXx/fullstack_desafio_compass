@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { IGetAllProductsParams } from "../common/interfaces/GetAllQueryParams";
 
 interface ProductsState {

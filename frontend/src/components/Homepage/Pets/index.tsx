@@ -5,11 +5,14 @@ import { ChevronRight } from "lucide-react";
 
 import List from "../../Common/List";
 import Button from "../../Common/Button";
-import { productsService } from "../../../services/ProductsService";
-import { IProduct } from "../../../common/interfaces/Product";
-import { EnumProductType } from "../../../common/enum/ProductType";
+import Loader from "../../Common/Loader";
 
-const card = tv({
+import { productsService } from "../../../services/ProductsService";
+
+import { EnumProductType } from "../../../common/enum/ProductType";
+import { IProduct } from "../../../common/interfaces/Product";
+
+const petsStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full px-32",
     containerHeader: "flex flex-row items-end justify-between w-full mb-9",
@@ -18,25 +21,34 @@ const card = tv({
   },
 });
 
-const { containerMain, containerHeader, title, subtitle } = card();
+const { containerMain, containerHeader, title, subtitle } = petsStyles();
 
 export default function Pets() {
   const navigate = useNavigate();
-  const [pets, setPets] = useState<IProduct[]>();
+  const [pets, setPets] = useState<IProduct[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getPets();
+    fetchPets();
   }, []);
 
-  const getPets = async () => {
-    const params = {
-      limit: 8,
-      type: EnumProductType.PET,
-    };
+  const fetchPets = () => {
+    setIsLoading(true);
 
-    await productsService.getAll(params).then((response) => {
-      setPets(response.data.items);
-    });
+    try {
+      const params = {
+        limit: 8,
+        type: EnumProductType.PET,
+      };
+
+      productsService.getAll(params).then((response) => {
+        setPets(response.data.items);
+      });
+    } catch (error: any) {
+      console.error("Failed to fetch pets", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const navigateToCategory = () => {
@@ -57,6 +69,7 @@ export default function Pets() {
           gap="xs"
           border="primary"
           text="smPrimaryMedium"
+          label="View more content"
           action={navigateToCategory}
         >
           View more
@@ -64,7 +77,7 @@ export default function Pets() {
         </Button>
       </header>
 
-      <List numCols={4} data={pets} />
+      {isLoading ? <Loader /> : <List numCols={4} data={pets} />}
     </section>
   );
 }

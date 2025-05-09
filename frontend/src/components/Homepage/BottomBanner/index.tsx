@@ -2,9 +2,10 @@ import { tv } from "tailwind-variants";
 import { CirclePlay } from "lucide-react";
 
 import Button from "../../Common/Button";
+
 import PawIcon from "@/assets/paw_icon.svg";
 
-const card = tv({
+const bottomBannerStyles = tv({
   slots: {
     containerMain:
       "relative flex flex-col justify-center w-[calc(100% - 256px)] h-[378px] mx-32 bg-bottom-banner bg-cover bg-no-repeat bg-center rounded-[20px]",
@@ -26,7 +27,7 @@ const {
   title,
   subtitle,
   text,
-} = card();
+} = bottomBannerStyles();
 
 export default function BottomBanner() {
   return (
@@ -35,7 +36,7 @@ export default function BottomBanner() {
         <div className={containerTitle()}>
           <h1 className={title()}>Adoption</h1>
 
-          <img src={PawIcon} alt="Paw" />
+          <img src={PawIcon} alt="" aria-hidden="true" />
         </div>
         <h2 className={subtitle()}>We need help. so do they.</h2>
         <p className={text()}>
@@ -50,12 +51,18 @@ export default function BottomBanner() {
             gap="xs"
             border="primary"
             text="basePrimaryMedium"
+            label="Watch introduction video"
           >
             View Intro
             <CirclePlay size={20} />
           </Button>
 
-          <Button padding="sm" background="primary" text="baseNeutralMedium">
+          <Button
+            padding="sm"
+            background="primary"
+            text="baseNeutralMedium"
+            label="Explore our content now"
+          >
             Explore Now
           </Button>
         </div>

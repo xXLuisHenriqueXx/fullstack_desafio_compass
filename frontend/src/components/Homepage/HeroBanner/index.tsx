@@ -3,11 +3,11 @@ import { CirclePlay } from "lucide-react";
 
 import Button from "../../Common/Button";
 
-const card = tv({
+const heroBannerStyles = tv({
   slots: {
     containerMain:
-      "flex items-center w-full h-[695px] px-32 bg-hero-banner bg-center bg-no-repeat bg-cover rounded-b-4xl",
-    containerText: "w-[490px]",
+      "flex items-center w-full min-h-[695px] h-auto px-32 bg-hero-banner bg-center bg-no-repeat bg-cover rounded-b-4xl",
+    containerText: "max-w-[490px]",
     containerButtons: "flex flex-row gap-x-5",
     title: "pb-1 text-6xl font-extrabold text-primary-80",
     subtitle: "pb-6 text-5xl font-bold text-primary-80",
@@ -22,7 +22,7 @@ const {
   title,
   subtitle,
   text,
-} = card();
+} = heroBannerStyles();
 
 export default function HeroBanner() {
   return (
@@ -43,12 +43,18 @@ export default function HeroBanner() {
             gap="xs"
             border="primary"
             text="basePrimaryMedium"
+            label="Watch introduction video"
           >
             View Intro
             <CirclePlay size={20} />
           </Button>
 
-          <Button padding="sm" background="primary" text="baseNeutralMedium">
+          <Button
+            padding="sm"
+            background="primary"
+            text="baseNeutralMedium"
+            label="Explore our content now"
+          >
             Explore Now
           </Button>
         </div>

@@ -14,6 +14,7 @@ interface Props {
     | "baseNeutralBold"
     | "baseNeutralMedium";
   children: ReactNode;
+  label: string;
   action?: () => void;
 }
 
@@ -60,11 +61,13 @@ export default function Button({
   background,
   text,
   children,
+  label,
   action,
 }: Props) {
   return (
     <button
       onClick={action}
+      aria-label={label}
       className={button({
         flex: flex,
         padding: padding,

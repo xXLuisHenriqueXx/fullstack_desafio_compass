@@ -2,9 +2,10 @@ import { tv } from "tailwind-variants";
 import { ChevronRight } from "lucide-react";
 
 import PetKnowledgeList from "./PetKnowledgeList";
+
 import Button from "../../Common/Button";
 
-const card = tv({
+const petKnowledgeStyles = tv({
   slots: {
     containerMain: "flex flex-col w-full px-32",
     containerHeader: "flex flex-row items-end justify-between w-full mb-9",
@@ -13,7 +14,8 @@ const card = tv({
   },
 });
 
-const { containerMain, containerHeader, title, subtitle } = card();
+const { containerMain, containerHeader, title, subtitle } =
+  petKnowledgeStyles();
 
 export default function PetKnowledge() {
   return (
@@ -30,6 +32,7 @@ export default function PetKnowledge() {
           gap="xs"
           border="primary"
           text="smPrimaryMedium"
+          label="View more content"
         >
           View more
           <ChevronRight size={16} />

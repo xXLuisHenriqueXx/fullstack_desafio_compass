@@ -1,9 +1,12 @@
 import { useParams } from "react-router";
+
 import Container from "../../components/Common/Container";
-import CategoryBanner from "../../components/Category/CategoryBanner";
-import Path from "../../components/Category/Path";
 import Footer from "../../components/Common/Footer";
+
+import Path from "../../components/Category/Path";
+import CategoryBanner from "../../components/Category/CategoryBanner";
 import Products from "../../components/Category/Products";
+
 import { EnumProductType } from "../../common/enum/ProductType";
 
 export default function Category() {
@@ -13,10 +16,10 @@ export default function Category() {
   if (type === EnumProductType.PRODUCT) typeText = "Product";
 
   return (
-    <Container page="another">
+    <Container>
       <Path type={typeText} />
       <CategoryBanner />
-      <Products type={typeText} />
+      <Products type={type} typeText={typeText} />
       <Footer />
     </Container>
   );

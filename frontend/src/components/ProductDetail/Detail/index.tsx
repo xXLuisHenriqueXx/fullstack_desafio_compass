@@ -2,6 +2,7 @@ import { tv } from "tailwind-variants";
 
 import ImageShare from "./ImageShare";
 import Info from "./Info";
+
 import { IProduct } from "../../../common/interfaces/Product";
 
 interface Props {
@@ -13,9 +14,11 @@ const container = tv({
 });
 
 export default function Detail({ data }: Props) {
+  if (!data) return null;
+
   return (
     <section className={container()}>
-      <ImageShare images={data?.images} />
+      <ImageShare images={data.images} />
       <Info data={data} />
     </section>
   );
