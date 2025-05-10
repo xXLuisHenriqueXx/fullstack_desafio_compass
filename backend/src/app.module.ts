@@ -1,27 +1,25 @@
-import { Module, ValidationPipe } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Products } from './products/products.entity';
-import { APP_PIPE } from '@nestjs/core';
-import { ProductsController } from './products/products.controller';
-import { ProductsService } from './products/products.service';
-import { ProductsModule } from './products/products.module';
-import { SeedController } from './seed/seed.controller';
-import { SeedService } from './seed/seed.service';
-import { SeedModule } from './seed/seed.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+
+import { ProductsModule } from "./products/products.module";
+import { SeedModule } from "./seed/seed.module";
+
+import { Products } from "./products/products.entity";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: ".env",
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: "postgres",
       host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT || '5432'),
+      port: parseInt(process.env.DATABASE_PORT || "5432"),
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
@@ -32,7 +30,7 @@ import { SeedModule } from './seed/seed.module';
     ProductsModule,
     SeedModule,
   ],
-  controllers: [AppController, SeedController],
-  providers: [AppService, SeedService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

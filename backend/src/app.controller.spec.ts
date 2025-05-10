@@ -3,20 +3,32 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 describe("AppController", () => {
-  let appController: AppController;
+  let controller: AppController;
 
   beforeEach(async () => {
+    const mockAppService = {
+      checkApiHealth: jest.fn().mockReturnValue({ status: "API is running" }),
+      checkDatabaseHealth: jest
+        .fn()
+        .mockResolvedValue({ status: "Database is connected" }),
+    };
+
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [{ provide: AppService, useValue: mockAppService }],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    controller = app.get<AppController>(AppController);
   });
 
   describe("Initial Tests", () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe("Hello World!");
+    it("should return API health status", () => {
+      expect(controller.checkApi()).toEqual({ status: "API is running" });
+    });
+
+    it("should return DB health status", async () => {
+      const result = await controller.checkDb();
+      expect(result).toEqual({ status: "Database is connected" });
     });
   });
 });
