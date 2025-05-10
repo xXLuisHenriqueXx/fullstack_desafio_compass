@@ -20,8 +20,6 @@ export const productsService = {
 
     const response = await api.get(url);
 
-    console.log(response.data);
-
     return response;
   },
 };

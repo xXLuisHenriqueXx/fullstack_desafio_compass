@@ -25,7 +25,7 @@ const moreStyles = tv({
 const { containerMain, containerHeader, title, subtitle } = moreStyles();
 
 export default function More({ type }: Props) {
-  const isPet = type === EnumProductType.PET;
+  const isPet = type === EnumProductType.PET || EnumProductType.ALL;
   const [items, setItems] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -35,7 +35,7 @@ export default function More({ type }: Props) {
     try {
       const params = {
         limit: 4,
-        type: type,
+        type,
       };
 
       productsService.getAll(params).then((response) => {

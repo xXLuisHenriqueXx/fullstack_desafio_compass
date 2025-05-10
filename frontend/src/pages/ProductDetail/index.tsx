@@ -23,7 +23,7 @@ export default function ProductDetail() {
 
     try {
       if (id) {
-        productsService.getById(Number(id)).then((response) => {
+        productsService.getById(parseInt(id)).then((response) => {
           setItem(response.data);
         });
       }
@@ -45,7 +45,7 @@ export default function ProductDetail() {
     <Container>
       <Detail data={item} />
       <Costumer />
-      <More type={item && item.type} />
+      {item && <More type={item.type} />}
       <Footer />
     </Container>
   );

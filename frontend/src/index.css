@@ -44,7 +44,7 @@
 
 @font-face {
   font-family: "Gilroy";
-  src: url("/src/assets/fonts/SVNGilroy_Bold.otf") format("opentype");
+  src: url("/src/assets/fonts/gilroy/Gilroy-Bold.ttf") format("opentype");
   font-weight: 700;
   font-style: normal;
 }

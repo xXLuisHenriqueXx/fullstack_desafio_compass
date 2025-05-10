@@ -33,7 +33,7 @@ const { containerMain, containerCheckboxes, labelCheckbox, title, subtitle } =
 
 export default function Sidebar({ type }: Props) {
   const { filters, setFilters } = useProductsStore();
-  const isPet = type === EnumProductType.PET || type === undefined;
+  const isPet = type === EnumProductType.PET || type === EnumProductType.ALL;
 
   const handleGenderChange = (gender: string) => {
     const current = filters.gender || [];

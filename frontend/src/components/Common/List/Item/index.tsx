@@ -14,7 +14,7 @@ interface Props {
 const itemStyles = tv({
   slots: {
     containerMain:
-      "flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300",
+      "flex flex-col p-2 pb-5 gap-y-4 bg-neutral shadow-card hover:shadow-card-hover rounded-xl hover:scale-105 translate-all duration-300 cursor-pointer",
     containerInfo:
       "flex flex-col gap-y-1 text-left text-base font-bold text-neutral-100",
     containerTextInfo:
