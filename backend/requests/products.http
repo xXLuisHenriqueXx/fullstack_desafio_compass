@@ -1,5 +1,4 @@
-# Products Routes
-POST http://localhost:3000/products/create
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {

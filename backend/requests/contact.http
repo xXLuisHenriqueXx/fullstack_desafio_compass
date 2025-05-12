@@ -1,0 +1,27 @@
+POST http://localhost:3000/contact
+Content-Type: application/json
+
+{
+    "fullname": "Teste de contato",
+    "phone": 999001144,
+    "email": "test@email.com",
+    "city": "Santa Maria",
+    "state": "RS"
+}
+
+### 
+
+GET http://localhost:3000/contact/2
+
+###
+
+PATCH http://localhost:3000/contact/2
+Content-Type: application/json
+
+{
+    "fullname": "Teste de contato update"
+}
+
+###
+
+DELETE http://localhost:3000/contact/2

@@ -7,8 +7,10 @@ import { AppService } from "./app.service";
 
 import { ProductsModule } from "./products/products.module";
 import { SeedModule } from "./seed/seed.module";
+import { ContactModule } from "./contact/contact.module";
 
 import { Products } from "./products/products.entity";
+import { Contact } from "./contact/contact.entity";
 
 @Module({
   imports: [
@@ -23,12 +25,13 @@ import { Products } from "./products/products.entity";
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [Products],
+      entities: [Products, Contact],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Products]),
+    TypeOrmModule.forFeature([Products, Contact]),
     ProductsModule,
     SeedModule,
+    ContactModule,
   ],
   controllers: [AppController],
   providers: [AppService],
