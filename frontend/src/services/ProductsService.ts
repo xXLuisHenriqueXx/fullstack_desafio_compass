@@ -2,7 +2,7 @@ import { api } from "./Api";
 
 import { queryToString } from "../utils/queryToString";
 
-import { IGetAllProductsParams } from "../common/interfaces/GetAllQueryParams";
+import { IGetAllProductsParams } from "../common/interfaces/products/GetAllQueryParams";
 
 export const productsService = {
   getAll: async (params: IGetAllProductsParams) => {

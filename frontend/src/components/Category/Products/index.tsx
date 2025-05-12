@@ -10,7 +10,7 @@ import { productsService } from "../../../services/ProductsService";
 import { useProductsStore } from "../../../states/ProductsState";
 
 import { EnumProductType } from "../../../common/enum/ProductType";
-import { IProduct } from "../../../common/interfaces/Product";
+import { IProduct } from "../../../common/interfaces/products/Product";
 
 interface Props {
   type?: EnumProductType;

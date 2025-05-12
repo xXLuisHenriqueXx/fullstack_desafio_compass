@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants";
 import { Dot } from "lucide-react";
 
 import { EnumProductType } from "../../../../common/enum/ProductType";
-import { IProduct } from "../../../../common/interfaces/Product";
+import { IProduct } from "../../../../common/interfaces/products/Product";
 
 import GiftIcon from "../../../../assets/gift_icon.svg";
 

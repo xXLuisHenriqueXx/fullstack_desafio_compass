@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { IGetAllProductsParams } from "../common/interfaces/GetAllQueryParams";
+import { IGetAllProductsParams } from "../common/interfaces/products/GetAllQueryParams";
 
 interface ProductsState {
   filters: Omit<IGetAllProductsParams, "limit" | "offset" | "type">;

@@ -11,7 +11,7 @@ import LogoMonito from "@/assets/logo_monito.svg";
 const headerStyles = tv({
   slots: {
     containerMain:
-      "fixed flex flex-row justify-between items-center gap-x-9 w-full px-32 py-7 z-99",
+      "fixed flex flex-row justify-between items-center gap-x-9 w-full px-32 py-7 z-90",
     containerNavUl: "flex flex-row items-center gap-x-12",
     containerSearch: "flex flex-row items-center gap-x-3.5 text-neutral-60",
     containerCurrency: "flex flex-row items-center gap-x-1",

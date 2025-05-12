@@ -8,9 +8,9 @@ export class UpdateContactDTO {
   fullname: string;
 
   @ApiProperty()
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  phone: number;
+  phone: string;
 
   @ApiProperty()
   @IsString()

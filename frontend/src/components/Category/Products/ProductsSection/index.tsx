@@ -5,7 +5,7 @@ import PageNavigator from "./PageNavigator";
 
 import List from "../../../Common/List";
 
-import { IProduct } from "../../../../common/interfaces/Product";
+import { IProduct } from "../../../../common/interfaces/products/Product";
 
 interface Props {
   name: string;

@@ -7,10 +7,11 @@ import Product from "./Product";
 import Button from "../../../Common/Button";
 
 import { EnumProductType } from "../../../../common/enum/ProductType";
-import { IProduct } from "../../../../common/interfaces/Product";
+import { IProduct } from "../../../../common/interfaces/products/Product";
 
 interface Props {
   data: IProduct | undefined;
+  action: () => void;
 }
 
 const infoStyles = tv({
@@ -38,7 +39,7 @@ const {
   text,
 } = infoStyles();
 
-export default function Info({ data }: Props) {
+export default function Info({ data, action }: Props) {
   const isPet = data?.type === EnumProductType.PET;
 
   return (
@@ -65,6 +66,7 @@ export default function Info({ data }: Props) {
           background="primary"
           text="baseNeutralBold"
           label="Talk with seller"
+          action={action}
         >
           Contact us
         </Button>

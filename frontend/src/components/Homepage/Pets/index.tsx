@@ -10,7 +10,7 @@ import Loader from "../../Common/Loader";
 import { productsService } from "../../../services/ProductsService";
 
 import { EnumProductType } from "../../../common/enum/ProductType";
-import { IProduct } from "../../../common/interfaces/Product";
+import { IProduct } from "../../../common/interfaces/products/Product";
 
 const petsStyles = tv({
   slots: {

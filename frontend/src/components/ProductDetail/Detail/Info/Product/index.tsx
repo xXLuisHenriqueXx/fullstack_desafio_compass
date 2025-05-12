@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
 
-import { IProduct } from "../../../../../common/interfaces/Product";
+import { IProduct } from "../../../../../common/interfaces/products/Product";
 
 interface Props {
   data: IProduct | undefined;

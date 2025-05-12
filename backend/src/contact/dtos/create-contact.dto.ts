@@ -7,8 +7,8 @@ export class CreateContactDTO {
   fullname: string;
 
   @ApiProperty()
-  @IsNumber()
-  phone: number;
+  @IsString()
+  phone: string;
 
   @ApiProperty()
   @IsString()

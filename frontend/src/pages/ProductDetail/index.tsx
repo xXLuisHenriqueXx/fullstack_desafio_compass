@@ -11,12 +11,14 @@ import More from "../../components/ProductDetail/More";
 
 import { productsService } from "../../services/ProductsService";
 
-import { IProduct } from "../../common/interfaces/Product";
+import { IProduct } from "../../common/interfaces/products/Product";
+import ModalContact from "../../components/ProductDetail/Detail/Info/ModalContact/indes";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const [item, setItem] = useState<IProduct>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,6 +36,10 @@ export default function ProductDetail() {
     }
   }, [id]);
 
+  const handleManageModal = () => {
+    setShowModal(!showModal);
+  };
+
   if (isLoading)
     return (
       <Container>
@@ -43,10 +49,14 @@ export default function ProductDetail() {
 
   return (
     <Container>
-      <Detail data={item} />
+      <Detail data={item} action={handleManageModal} />
       <Costumer />
       {item && <More type={item.type} />}
       <Footer />
+
+      {showModal && (
+        <ModalContact showModal={showModal} setShowModal={setShowModal} />
+      )}
     </Container>
   );
 }
